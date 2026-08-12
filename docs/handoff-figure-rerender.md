@@ -57,7 +57,7 @@ version.
   `<source media="(max-width: 600px)" srcset="...-narrow.png">`, wrapped in the
   same `quarto-figure quarto-figure-center` / `figure.figure` structure Quarto
   emits, so existing styling is untouched.
-- **Figure B's alt text changed**: it quoted the annotation verbatim, and the two
+- **Figure 1's alt text changed**: it quoted the annotation verbatim, and the two
   renders word it differently ("triples the space of possible conflicts" vs
   "triples the possibilities"). Alt applies to whichever source loads, so the
   quotation became a description. Figure A's alt was accurate for both and is
