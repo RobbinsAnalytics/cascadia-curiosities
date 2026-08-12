@@ -38,12 +38,26 @@ the Rule 7.4 reading panel.** No exception for "it's just a figure for a paper" 
 the sibling-conflict figures went through two panels and the second one is why
 Figure A exists at all.
 
-## The manuscript does not compile on this machine
+## Building the manuscript
 
-**`pdflatex` is not installed here** — no MiKTeX, no TeX Live, checked
-2026-08-12. The committed `manuscript.pdf` was built elsewhere and is the
-artifact that was actually sent to the editors. Do not claim a LaTeX build was
-verified from this machine without installing a distribution first and saying so.
+**Never rebuild `manuscript.pdf` in place.** The committed PDF is the exact
+artifact that went to the editors; a local rebuild produces a different file
+(different MiKTeX version, different byte count — 269,753 vs the committed
+235,388) and overwriting it destroys the ability to say "this is what they
+received." Build to a scratch directory instead:
+
+```
+pdflatex -interaction=nonstopmode -output-directory=<scratch> manuscript.tex
+```
+
+run twice, **with the working directory set to `manuscript/`** — the figure
+paths are relative and resolve from the CWD, not from the output directory.
+
+**MiKTeX is user-scope and not on `PATH` for every shell**:
+`%LOCALAPPDATA%\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe`. Installed
+2026-08-12 with `[MPM]AutoInstall=1` so missing packages fetch instead of
+blocking on a prompt. Verified 2026-08-12: two passes, 7 pages, converged, no
+errors.
 
 **`manuscript/` and `figures/` are separate folders, so `\graphicspath` carries
 the figure resolution**, not the `\includegraphics` calls — those are bare
