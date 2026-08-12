@@ -1,7 +1,7 @@
 # Chart review — Figure 1, "Sibling conflict combinatorics" (Mathematical Intelligencer submission)
 
 **Reviewed under CHART-REVIEW.md v2.5 / VIZ-PRINCIPLES.md v2.5 · 2026-08-12**
-Author of record: Aaron Robbins. Chart built and panel run by agent; dispositions below are proposed and await Aaron's ratification.
+Author of record: Aaron Robbins. Chart built and panel run by agent; **dispositions below are ratified by Aaron, both panel rounds, 2026-08-12** — per Rule 7.4, disposition belongs to the author.
 
 ---
 
