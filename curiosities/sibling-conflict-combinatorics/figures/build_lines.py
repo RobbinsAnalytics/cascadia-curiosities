@@ -30,13 +30,17 @@ matplotlib.rcParams["pdf.fonttype"] = 42
 
 DPI = 150
 
+# min_pt is the smallest point size any text may take on this target. On web it is
+# set by check 5.3's 12 px floor at the 324 px display width: 12 / 1.0417 = 11.52.
+# Design is a print target and carries journal type sizes; narrow is the superseded
+# interim render and is not held to the screen floor.
 TARGETS = {
     "design": dict(W=7.00, H=4.80, title=13.5, sub=10.5, caveat=10.5, anno=10.5,
-                   source=8.5, pdf=True),
+                   source=8.5, min_pt=0, pdf=True),
     "narrow": dict(W=3.60, H=4.20, title=10.0, sub=7.8,  caveat=8.0,  anno=8.2,
-                   source=6.8, pdf=False),
+                   source=6.8, min_pt=0, pdf=False),
     "web":    dict(W=4.32, H=5.04, title=18.0, sub=13.0, caveat=12.5, anno=12.0,
-                   source=11.0, pdf=False),
+                   source=11.6, min_pt=11.6, pdf=False),
 }
 
 SUBTITLE = "Every possible split into two opposing sides, with anyone left over staying out of it."
@@ -52,6 +56,9 @@ pairs = [k*(k-1)//2 for k in n8]
 assert configs == [0, 1, 6, 25, 90, 301, 966, 3025]
 assert pairs == [0, 1, 3, 6, 10, 15, 21, 28]
 
+# Figure A's range, sliced from the same series rather than retyped.
+A_HI, A_LO = configs[:4], pairs[:4]
+
 # The pairs series is the one-against-one slice of the configurations, verified by
 # enumeration in Panel v3. The titles say so rather than setting one against the
 # other as if they were independent quantities.
@@ -60,15 +67,19 @@ FIGURES = {
         title="Of the 3,025 ways eight children can take sides, just 28 are one against one",
         # Panel v4: "sixfold at first, nearer three later" left two seats unable to
         # say which numbers it referred to. It now names them.
-        note="Each added child multiplies the total: 6x from two children to three, "
-             "settling toward 3x by eight.",
-        leader=False,   # v4: a leader landing on n=7 read as "this is about n=7"
+        note="Each child multiplies the total: 6x at first, nearer 3x by eight.",
+        # v4 said a leader landing on the n=7 marker read as "this is about n=7".
+        # Removing it broke check 3.4's linkage requirement, so it is back and
+        # anchored mid-segment, between markers, where it can only mean the curve.
+        leader=True,
         xs=n8, hi=configs, lo=pairs,
         yticks=[0, 1500, 3000], ylabels=["0", "1,500", "3,000"],
-        xlim=(0.8, 8.2), ylim=(0, 3025*1.06),
+        # K1: bounds derived from the series, not typed. The literals these replace
+        # were correct until the data moved and silent thereafter.
+        xlim=(0.8, 8.2), ylim=(0, max(configs)*1.06),
         end_hi="All ways to take sides: 3,025", end_lo="One against one: 28",
-        end_hi_xy=(8, 3025), end_lo_xy=(8, 28),
-        note_xy=(7, 966), note_rad=-0.10,
+        end_hi_xy=(8, max(configs)), end_lo_xy=(8, max(pairs)),
+        note_xy=(7.5, 1995), note_rad=-0.10,   # on the segment, not on a marker
         # value label -> (data xy, offset xy), per target where the geometry differs
         values={"design": [("90", (5, 90), (5, 300), EVERGREEN),
                            ("301", (6, 301), (5.9, 560), EVERGREEN),
@@ -89,13 +100,13 @@ FIGURES = {
         title="Of the 25 ways four children can take sides, 6 are one against one",
         # v4: "the first to separate" was read as a claim about the children, not
         # about the two lines, and cost one seat twenty seconds to unpick.
-        note="At three children the two counts part company: six ways in all, three of them one against one.",
+        note="At three children the counts part company: six ways, three one against one.",
         leader=True,
-        xs=[1, 2, 3, 4], hi=[0, 1, 6, 25], lo=[0, 1, 3, 6],
+        xs=[1, 2, 3, 4], hi=A_HI, lo=A_LO,
         yticks=[0, 10, 20], ylabels=None,
-        xlim=(0.85, 4.15), ylim=(0, 25*1.09),
-        end_hi="All ways to take sides: 25", end_lo="One against one: 6",
-        end_hi_xy=(4, 25), end_lo_xy=(4, 6),
+        xlim=(0.85, 4.15), ylim=(0, max(A_HI)*1.09),
+        end_hi=f"All ways to take sides: {max(A_HI)}", end_lo=f"One against one: {max(A_LO)}",
+        end_hi_xy=(4, max(A_HI)), end_lo_xy=(4, max(A_LO)),
         note_xy=(3, 6), note_rad=0.10,
         # v4: the 0 and 1 labels floated far enough above their markers to read as
         # values of their own on a 0-25 scale.
@@ -120,6 +131,9 @@ def build(name, spec, target):
     W, H = t["W"], t["H"]
     TITLE_PT, SUB_PT, CAVEAT_PT = t["title"], t["sub"], t["caveat"]
     ANNO_PT, SOURCE_PT = t["anno"], t["source"]
+    # Check 5.3: nothing below the target's floor. Tick labels were the smallest
+    # text on the canvas and were the element that breached it.
+    TICK_PT = max(ANNO_PT*0.92, t["min_pt"])
 
     fig = plt.figure(figsize=(W, H), dpi=DPI); fig.patch.set_facecolor(PAPER)
     LEFT = 0.052 if W < 5 else 0.030
@@ -137,7 +151,7 @@ def build(name, spec, target):
 
     xlim = spec["xlim"]
     ylab = spec["ylabels"] if spec["ylabels"] else [str(v) for v in spec["yticks"]]
-    ax_left = max(width_in(fig, s, fontsize=ANNO_PT*0.92, family=SANS)
+    ax_left = max(width_in(fig, s, fontsize=TICK_PT, family=SANS)
                   for s in ylab)/W + LEFT + 0.02
     end_x = xlim[1] + 0.01*(xlim[1]-xlim[0])
     anchor = (end_x - xlim[0]) / (xlim[1] - xlim[0])
@@ -207,10 +221,10 @@ def build(name, spec, target):
     ax.set_xlim(*xlim); ax.set_ylim(*spec["ylim"])
     ax.set_xticks(spec["xs"]); ax.set_yticks(spec["yticks"])
     if spec["ylabels"]: ax.set_yticklabels(spec["ylabels"])
-    ax.tick_params(colors=SLATE, labelsize=ANNO_PT*0.92, length=3)
+    ax.tick_params(colors=SLATE, labelsize=TICK_PT, length=3)
     for lbl in ax.get_xticklabels()+ax.get_yticklabels():
         lbl.set_family(SANS); lbl.set_color(SLATE)
-    ax.set_xlabel("Number of children", fontsize=ANNO_PT*0.92, family=SANS, color=SLATE)
+    ax.set_xlabel("Number of children", fontsize=TICK_PT, family=SANS, color=SLATE)
     for s in ["top", "right"]: ax.spines[s].set_visible(False)
     for s in ["left", "bottom"]: ax.spines[s].set_color(MIST)
 

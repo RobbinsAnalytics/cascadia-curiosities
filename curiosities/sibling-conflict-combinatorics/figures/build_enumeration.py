@@ -123,8 +123,14 @@ def build(stem, kids, W, title_pt, sub_pt, caveat_pt, head_pt, cap_pt, source_pt
     # so the figure says so rather than letting the omission speak.
     caveat = ("These are possibilities, not arguments that happened — and the commonest "
               "case of all, nobody taking sides, is not among them.")
+    # Panel v4, two seats asked whether A vs B and B vs A are counted twice. The
+    # enumeration answers it by showing each split once; saying so makes the chart
+    # carry its own convention (check 4.3).
+    convention = "A vs B and B vs A are the same split, and are counted once."
+    # Check 4.2 wants Source · as-of · flags; the as-of was missing here.
     src = (f"Source: all {len(configs)} configurations for {'three' if n == 3 else 'four'} "
-           f"children, enumerated · OEIS A000392, S(n+1, 3) · exact counts, nothing estimated")
+           f"children, enumerated · computed 2026-08-13, OEIS A000392, S(n+1, 3) · "
+           f"exact counts, nothing estimated")
 
     probe = plt.figure(figsize=(W, 20), dpi=DPI)
     tl = wrap(probe, title, text_w, fontsize=title_pt, family=SERIF, weight="bold")
@@ -140,6 +146,7 @@ def build(stem, kids, W, title_pt, sub_pt, caveat_pt, head_pt, cap_pt, source_pt
              for h in heads]
     key_w = {s: width_in(probe, s, fontsize=cap_pt, family=SANS)
              for s in ("one side", "the other side", "staying out")}
+    convl = wrap(probe, convention, text_w, fontsize=cap_pt, family=SANS)
     plt.close(probe)
 
     src_step = source_pt * L_SRC / 72
@@ -150,7 +157,7 @@ def build(stem, kids, W, title_pt, sub_pt, caveat_pt, head_pt, cap_pt, source_pt
     H = (TOP + len(tl)*title_pt*L_TITLE/72 + G_SUB
          + len(sl)*sub_pt*L_SUB/72 + G_CAV
          + len(cl)*caveat_pt*L_CAV/72
-         + G_KEY + 2*(R*0.86) + 0.06 + G_GRID
+         + G_KEY + 2*(R*0.86) + 0.06 + len(convl)*cap_pt*1.30/72 + G_GRID
          + grid_h + src_block + BOT)
 
     fig = plt.figure(figsize=(W, H), dpi=DPI); fig.patch.set_facecolor(PAPER)
@@ -198,16 +205,21 @@ def build(stem, kids, W, title_pt, sub_pt, caveat_pt, head_pt, cap_pt, source_pt
                 ax.add_patch(Circle((x, cy), R, facecolor=PAPER, edgecolor=EVERGREEN,
                                     lw=1.8, zorder=3)); ink = EVERGREEN
             else:
-                ax.add_patch(Circle((x, cy), R, facecolor=MIST, edgecolor=MIST,
-                                    lw=1.4, zorder=3)); ink = SLATE
+                # Check 2.3.6: this circle is data-bearing and Mist measures 1.21:1
+                # against Paper, well under 3:1. Rain's written exception covers Rain
+                # only. A Slate edge (5.82:1) carries the geometry instead.
+                ax.add_patch(Circle((x, cy), R, facecolor=MIST, edgecolor=SLATE,
+                                    lw=1.2, zorder=3)); ink = SLATE
             ax.text(x, cy, k, ha="center", va="center", fontsize=cap_pt*0.95,
                     family=SANS, weight="bold", color=ink, zorder=4)
         ax.text(cx, cy - R - 0.11, f"{'+'.join(side_a)} vs {'+'.join(side_b)}",
                 ha="center", va="top", fontsize=cap_pt, family=SANS,
                 weight="bold", color=BASALT)
         tail = f"{'+'.join(rest)} stays out" if rest else "nobody left out"
+        # Check 5.3: the tail was the smallest text anywhere and sat under 12 px at
+        # the 324 px display width. It now matches the caption size.
         ax.text(cx, cy - R - 0.11 - cap_pt*1.30/72, tail, ha="center", va="top",
-                fontsize=cap_pt*0.92, family=SANS, color=SLATE)
+                fontsize=cap_pt, family=SANS, color=SLATE)
 
     # Panel v4, all four seats: nothing said what the three circle states meant.
     # Every seat reverse-engineered it from the captions and every seat said so.
@@ -216,13 +228,17 @@ def build(stem, kids, W, title_pt, sub_pt, caveat_pt, head_pt, cap_pt, source_pt
     kx = LEFT + kr
     for face, edge, ink, label in ((EVERGREEN, EVERGREEN, PAPER, "one side"),
                                    (PAPER, EVERGREEN, EVERGREEN, "the other side"),
-                                   (MIST, MIST, SLATE, "staying out")):
+                                   (MIST, SLATE, SLATE, "staying out")):
         ax.add_patch(Circle((kx, y - kr), kr, facecolor=face, edgecolor=edge,
                             lw=1.6, zorder=3))
         ax.text(kx + kr + 0.055, y - kr, label, ha="left", va="center",
                 fontsize=cap_pt, family=SANS, color=SLATE)
         kx += kr + 0.055 + key_w[label] + 0.16
     y -= 2*kr + 0.06
+    for s in convl:
+        require_glyphs(SANS_R, s, "convention")
+        ax.text(LEFT, y, s, ha="left", va="top", fontsize=cap_pt, family=SANS, color=SLATE)
+        y -= cap_pt * 1.30 / 72
 
     y -= G_GRID
     for (key, group), lines in zip(rows, headl):
@@ -261,7 +277,9 @@ def build(stem, kids, W, title_pt, sub_pt, caveat_pt, head_pt, cap_pt, source_pt
 
 
 print("enumeration")
-build("figure_n3_web", ("A", "B", "C"), 4.32, 18.0, 13.0, 12.5, 12.0, 11.0, 11.0, cols=3)
+# Web caption and source sizes are 11.6 pt, the smallest that clears check 5.3's
+# 12 px floor once the 324 px display width is applied (12 / 1.0417 = 11.52).
+build("figure_n3_web", ("A", "B", "C"), 4.32, 18.0, 13.0, 12.5, 12.0, 11.6, 11.6, cols=3)
 build("figure_n3_design", ("A", "B", "C"), 7.00, 13.5, 10.5, 10.5, 10.5, 9.5, 8.5,
       cols=3, pdf=True)
 build("figure_n4_design", ("A", "B", "C", "D"), 7.00, 13.5, 10.5, 10.5, 10.5, 9.5, 8.5,

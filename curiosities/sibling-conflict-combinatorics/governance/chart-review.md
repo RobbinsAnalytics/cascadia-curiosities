@@ -355,7 +355,167 @@ PANEL v4: 4 seats, simulated · 4 charts · findings 17 · defects 13 · novel 9
 
 Checklist A/B has not been re-run against these renders. The panel is closed with no open escalations; the charts are the current committed renders and the manuscript builds against them.
 
-**VERDICT: not yet issued — panel complete, checklist outstanding.**
+---
+
+# CASCADIA CHART REVIEW v2.5 — all four figures — 2026-08-13
+
+```
+Charts:        figure1 (n<=8) · figureA (n<=4) · n=3 enumeration · n=4 enumeration
+Class:         detailed (all four)        Quadrant: explanatory (all four)
+Relationship:  magnitude (figure1, figureA) · part-to-whole (both enumerations)
+States:        static renders; no interactive states exist
+Widths (K6):   324 px (narrowest supported) · 355 px · 548 px (599 px viewport,
+               one below the site breakpoint) · 550 px (601 px viewport, one above)
+               · 648 px natural · 800 px print · 1050 px design natural
+Once per publish (K7, K8): see below
+Reading panel (7.4): Panel v4, 2026-08-13, simulated, 4 seats — this file
+```
+
+**K7 — assets reviewed are assets built.** PASS. Every render in this review was produced by `build_lines.py` / `build_enumeration.py` in the working tree and read back from disk in the same session; the manuscript was compiled against those same PDFs and its log lists all four. No cache sits between the build and the review.
+
+**K8 — social card and favicon.** N/A for the manuscript. **NOT ASSESSED for the web page** — Open Graph tags and favicon are properties of `RobbinsAnalytics.github.io` and cannot be verified from this repo. This is recorded as unassessed, not as a pass.
+
+## Layers 0–7 — results
+
+**INVARIANTS**
+
+```
+0.1  PASS            decision named in the Panel v4 roster block
+0.2  PASS            explanatory, declared above
+0.3  PASS            detailed, declared above
+1.1  PASS            see note 1 below
+1.4  N/A             relationship is not correlation
+2.1  PASS            zero baseline on both line charts; N/A for the enumerations
+K1   PASS            axis bounds derived from the plotted series, not typed —
+                     see note 2, this was a FAIL when the checklist was first run
+2.2  PASS            one value axis; no secondary axis anywhere
+2.3.1 PASS           Evergreen = all configurations, Rain = one-against-one, in
+                     that order on every figure at every target
+2.3.2 N/A            no sentiment encoded
+2.3.3 PASS           strokes drawn at 2.2 / 2.4 px; pair checked at stroke size
+2.3.4 N/A            no strokes under 2 px, no points under 8 px
+2.3.5 PASS           two encoded categories
+2.3.6 PASS-BY-EXCEPTION   Rain measures 2.45:1 and carries a direct label in Slate
+                     at 5.82:1, which is the written exception exactly. Evergreen
+                     5.18:1, Basalt 14.14:1 — see note 3, the enumerations FAILED
+                     this when first run
+2.5  PASS            no 3D, shadow, gradient, icon or dressed tile
+2.6  PASS            no pie or donut; the enumerations show part within whole as
+                     a labelled row of the drawn set
+3.1  PASS            complete finding sentence above the plot on all four
+3.2  PASS-BY-EXCEPTION (figure1) / PASS (other three) — see note 4
+3.3  PASS            one saturated series; one annotation at the data, colour-
+                     matched; the Rain series carries a direct label
+3.4  PASS            one dominant annotation each, leader-linked and colour-matched;
+                     12 and 13 words — see note 5, the leader was absent when the
+                     checklist was first run
+3.5  PASS            compared marks adjacent on shared axes; enumeration classes
+                     grouped so the subset is one contiguous block
+3.6  PASS            both series labelled at the line end; every enumeration cell
+                     captioned. No legend anywhere
+4.1  PASS            no gaps, no zero-fill, no interpolated values; every plotted
+                     point is an exact integer count
+4.2  PASS            bottom-left, Evergreen tick, Source · as-of · flags, Slate —
+                     see note 6, the enumerations FAILED this when first run
+K5   PASS            three segments declared, three rendered, on all four; no
+                     separator occurs inside segment content
+4.3  PASS            see note 7
+4.5  N/A             every value exact by construction; nothing estimated
+5.1  PASS            manuscript Table 1 carries every value for the line charts;
+                     the enumerations carry their content on the canvas under 5.1's
+                     closing exception, with class counts now in the headings.
+                     NOT ASSESSED for the web page — DOM table and text summary are
+                     site-repo properties
+5.2  NOT ASSESSED    alt text lives in the site repo
+K2   PASS            every figure in the manuscript captions traces to the
+                     enumeration or the closed form, both computed here; the ratio
+                     series in the fig:growth caption was computed, not typed
+5.3  PASS (artifacts) / FAIL (page as configured) — see note 8. This is the
+                     finding of the review
+5.6  N/A             static images, no motion
+5.7  NOT ASSESSED    page colour-scheme is a site-repo property
+7.1  PASS            panel run, author held no seat, seats' sentences carried the
+                     claims
+7.2  PASS            model-generated; this full checklist is that clearance
+K6   PASS            seven widths reached and recorded above, including both sides
+                     of the declared breakpoint. It found note 8
+7.4  PASS            roster with a written reason per seat, four seats, three
+                     domain, visualization seat canvas-only, parallel single spawn,
+                     four items per return, every quoted number located on canvas,
+                     every finding dispositioned, renders supplied at the narrowest
+                     supported width
+```
+
+**PREFERENCES**
+
+```
+1.2  PASS            position on a common scale carries every comparison
+1.3  N/A             relationship is magnitude, not change over time; neither
+                     figure is a time series or slope chart
+2.4  PASS            no gridlines; zero is the default and none was earned
+2.7  PASS            enumeration panels ordered by a declared logic — class, then
+                     A-first within class — stated in the row headings, which are
+                     more visible than a subtitle statement
+2.8  PASS            no rotated or diagonal text anywhere
+2.9  PASS-BY-EXCEPTION  "3,025" is four significant figures against 2.9's three.
+                     Written exception on record since Panel v1: these are exact
+                     combinatorial counts and the exactness is the message
+K4   PASS            x ticks derive from the plotted series; y ticks are an explicit
+                     three-value set over a fixed domain, identical at every width,
+                     with no collision or silent drop at 324 px (checked). No
+                     literal interval rule of the kind K4 targets
+5.4  PASS            grayscale survives: stroke weight, dash pattern and direct
+                     labels on the line charts; fill / ring / edged-grey on the
+                     enumerations. No distinction rests on hue
+5.5  PASS            form constant across targets; the Rain series keeps its direct
+                     label at every width
+```
+
+**N/A:** 1.3 (magnitude, not time series) · 1.4 (not correlation) · 2.3.2 (no sentiment) · 2.3.4 (no small marks) · 4.5 (exact by construction) · 5.6 (static) · 2.1 and K1 for the enumerations (no value axis)
+
+**NOT ASSESSED, and recorded as such rather than passed:** K8 · 5.2 · 5.7 · the page half of 5.1. All four are properties of `RobbinsAnalytics.github.io` and none can be verified from this repo.
+
+```
+INVARIANT FAILURES: 0  (three were found and fixed during this review — see notes 2, 3, 6)
+PREFERENCE SCORE:   0
+```
+
+### Notes
+
+**1 — 1.1, and why it is a PASS rather than a FAIL.** Panel v4 finding 13 is the same objection: *"the title is framed as a ratio claim about a single endpoint, whereas the drawing is a trend across n=1 to 8."* 1.1 fails a chart where "the title asserts one relationship and the form expresses another." Here the title compares two magnitudes and the form compares two magnitudes; both quantities are plotted and both are directly labelled. The "of the X, just Y" phrasing is a containment framing over a magnitude comparison, not a different relationship — and the containment itself is now *drawn*, by the enumerations, which are declared part-to-whole and are the figures that carry that claim. Recorded as a PASS with the tension stated rather than buried.
+
+**2 — K1 was a FAIL and is fixed.** The refactor that produced `build_lines.py` typed the axis bounds as `3025*1.06` and `25*1.09` where the code it replaced derived them from the series. K1 fails a typed bound explicitly: correct until the data moves and silent thereafter. Both bounds, both end-label anchors and Figure A's whole series now derive from the one computed list.
+
+**3 — 2.3.6 was a FAIL on the enumerations and is fixed.** The "staying out" circle is data-bearing geometry and was filled in Mist, which measures **1.21:1** against Paper — far under the 3:1 floor, and not covered by the written exception, which names Rain and only Rain. It now carries a Slate edge at 5.82:1. Measured, not eyeballed.
+
+**4 — 3.2 on figure1.** "Just 28 are one against one" cannot be read off a 0–3,025 axis; three panels have now said so. Recorded as PASS-BY-EXCEPTION on the strength of manuscript Table 1, which lists all eight values of both series, with the subtitle and provenance strip naming the basis (S(n+1,3) and n(n-1)/2). Two things make this a stronger exception than at v3: the strip now names the second formula, and the enumerations show what "one against one" *is* rather than asserting a number. **On the web page this exception is only valid if the page carries the equivalent table** — it is a required input to Part 2, not an inherited pass.
+
+**5 — 3.4, and a fix that had to be partly undone.** Panel v4 found figure1's leader landed on the n=7 marker and read as "this annotation is about n=7". Removing it satisfied the panel and broke 3.4, which requires redundant annotation-to-mark linkage. The leader is back, anchored mid-segment between n=7 and n=8 where there is no marker, so it can only denote the curve. Both notes are within 3.4's 14-word limit at 12 and 13 words.
+
+**6 — 4.2 was a FAIL on the enumerations and is fixed.** Their strips carried source and flags but no as-of. 4.2 requires three segments and K5 requires the rendered count to match; the enumerations rendered three segments but one of them was not an as-of. Now "computed 2026-08-13".
+
+**7 — 4.3.** Two seats across two panels asked whether A vs B and B vs A are counted twice. The enumerations now state the convention on the canvas, which is also where it is demonstrable. The caveat that actually prevents a wrong conclusion — that these are possibilities and that the commonest case, nobody taking sides, is not among them — is on every figure.
+
+**8 — 5.3, and the reason K6 exists.** Running the review at the declared breakpoint ±1 px found the one thing no other width would have.
+
+*Artifacts.* Five elements sat under 5.3's 12 px floor at the 324 px display width: tick labels and axis title (11.50 px), the provenance strip (11.46 px), and the enumerations' captions, cell tails and key labels (11.46 / 10.54 / 11.46 px). All are now at 11.6 pt, which renders at 12.08 px. The web targets carry an explicit `min_pt` floor so this cannot regress silently.
+
+*Page as configured.* At a **601 px viewport — one pixel above the site's `max-width: 600px` breakpoint — the design render is served into a ~550 px column**, where its subtitle renders at 11.5 px and its provenance strip at **9.3 px**. The design render does not clear 12 px until its column reaches about 576 px for body text and **712 px for the strip**. The breakpoint is therefore roughly 160 px too low, and there is a band of viewports between 601 px and about 763 px where the page violates 5.3.
+
+This is a property of the page, not of the charts — the design render is correct at print size and at any column above 712 px — so it is adjudicated here and **handed to Part 2 as a blocking change: raise the `<source media>` breakpoint from 600 px to about 760 px.** It also means the currently live page, which serves the superseded narrow renders, has been violating 5.3 the whole time: those renders put their smallest type at 10.25 px in a 324 px column. They must not survive Part 2.
+
+### VERDICT
+
+**Manuscript figures (figure1_design, figureA_design, figure_n3_design, figure_n4_design): SHIPS.**
+Zero INVARIANT failures, preference score 0, three N/A. The manuscript compiles against these four PDFs, nine pages, two passes, no errors.
+
+**Web renders (figure1_web, figureA_web, figure_n3_web): SHIP AS ARTIFACTS — PUBLISH BLOCKED.**
+The renders themselves clear the checklist. The publish is blocked on three page-level items that cannot be resolved from this repo: the 5.3 breakpoint failure in note 8, the 3.2 exception's dependence on a data table being present on the page, and four checks (K8, 5.2, 5.7, the page half of 5.1) that are NOT ASSESSED rather than passed. All four belong to Part 2 in `RobbinsAnalytics.github.io`.
+
+**Narrow renders (figure1_narrow, figureA_narrow): DO NOT SHIP.**
+Superseded, and they fail 5.3 at the width they are actually displayed at. They are currently live. Part 2 replaces them.
+
+*A preference score of zero ships without a written justification. It is recorded anyway, because a zero that nobody wrote down is indistinguishable from a checklist nobody ran.*
 
 **On D = 7.50, against v1's and v2's 4.0.** The rise is not a regression in the charts. Three causes, in the order they contribute: the reading width dropped to 324 px and surfaced collisions no 1050 px panel could see; pre-panel notes were recorded this time, so N is measured rather than absent and the disposition was stricter about what counts; and Seat 4 was unusually thorough. D is a count of candidate defects, not a quality score, and three of the fifteen were introduced by this build and fixed within it.
 
