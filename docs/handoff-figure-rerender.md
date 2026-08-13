@@ -1,156 +1,146 @@
 # Handoff: re-render the sibling-conflict figures for the web
 
-**From:** session rooted in `cascadia-curiosities`, 2026-08-12
-**For:** two sessions — Part 1 rooted in `cascadia-curiosities`, Part 2 rooted in
-`RobbinsAnalytics.github.io`. They are separate because hooks and `CLAUDE.md`
-load only from the primary working directory.
+**From:** session rooted in `cascadia-curiosities`, 2026-08-12 through 2026-08-13.
+**For:** a session rooted in `RobbinsAnalytics.github.io`. Separate because hooks
+and `CLAUDE.md` load only from the primary working directory — Part 1 could not
+safely touch the site repo, and this session should not either.
 **Author:** Aaron Robbins. Aaron does not write code and does not run scripts; he
 approves decisions, the agent executes. Ambiguity stops the work and asks. Never
 end with "now run this."
 
-## Why this exists
+## Status: Part 1 is complete. This document now covers Part 2 only.
 
-Two defects in the same artifacts, fixed by the same re-render:
+Everything below the fold that used to describe Part 1 — prerequisites, the build,
+the panel — is done and committed in `cascadia-curiosities`:
 
-1. **The figures are typeset in DejaVu**, substituting for Source Serif 4 and
-   Segoe UI. `governance/chart-review.md` line 127 records it and says to
-   re-render with brand fonts if the figure is ever reused on a Cascadia web
-   property. It now has been.
-2. **The in-chart type is too small on mobile.** Measured on the live page at a
-   375 px viewport, before the interim fix below.
+- `33e8382`, `634fbbe` — scoped the work, corrected a figure name.
+- `5a7cb9f` — first web renders, Panel v3 (19 findings, one a verified
+  mathematical error: the sibling-pairs count is the *subset* of configurations
+  in which both sides are single children, not an independent quantity).
+- `c4f1e0e` — reworded the figures to fix that and three other v3 findings, added
+  a worked-example figure (all 6 configurations for 3 children) that both panels
+  had asked for.
+- `e68cc0e` — propagated the corrected wording everywhere, revised the manuscript
+  itself (Aaron's call: nothing was formally submitted, so the paper could
+  change), added the n=4 worked example for print, ran Panel v4 (17 findings, 11
+  fixed — the strongest signal was all four seats independently reporting no key
+  existed for the circle fill states).
+- `ce1dad9` — ran the Cascadia checklist, found and fixed three INVARIANT
+  failures (a typed axis bound, a sub-3:1 contrast pairing, a missing
+  provenance-strip date), found five sub-12px type elements and fixed those too,
+  and issued verdicts.
 
-Do them as one job. Two re-renders means two reading panels for one set of
-charts.
+Read `governance/chart-review.md` and `governance/panel-returns.md` in this repo
+for the full record. What follows is what Part 2 actually needs.
 
-## The measurement
+## What ships, per the checklist verdict
 
-The figure column is 324 px wide at a 375 px viewport. In-chart type converts as
-`css_px = points × (dpi ÷ 72) × (display_width ÷ natural_width)`.
+**Manuscript figures — SHIPS.** Not your concern; they're in the manuscript PDF.
 
-| In-chart element | Design render, 1050 px | Narrow render, 540 px | Page caption |
-|---|---|---|---|
-| Chart title | 8.7 px | 12.5 px | — |
-| Chart subtitle | 6.8 px | 9.8 px | 15.3 px |
-| Value labels (90/301/966) | 6.1 px | 9.5 px | 15.3 px |
-| End labels | 6.8 px | 10.3 px | 15.3 px |
-| Source strip | 5.5 px | 8.5 px | 15.3 px |
+**Web renders — ship as artifacts, page-level publish is blocked** on three
+things only the site repo can resolve (below).
 
-Page body is 17 px. The chart's own subtitle was rendering at 40% of the size of
-the caption printed directly beneath it.
+**Narrow renders (`figure1_narrow.png`, `figureA_narrow.png`) — DO NOT SHIP.**
+They are currently live on the page and have been failing check 5.3 (12px type
+floor) the whole time — their smallest element renders at 10.25px in the 324px
+column they're actually served at. Replacing them is the point of this handoff.
 
-**The governance point:** the panels read these charts at 1050 px and 540 px. The
-site was displaying one at 324 px — a width no reading panel has ever read them
-at. That is the Rule 7.4 failure arriving through CSS rather than through the
-chart, and it is the reason step 4 below is not optional.
+## The three assets to bring over
 
-## Already done — the interim fix
+All in `cascadia-curiosities/curiosities/sibling-conflict-combinatorics/figures/`:
 
-**Status: edited and verified in the site repo working tree, NOT committed, NOT
-published.** A session rooted in the site repo must run `/publish` to deploy it;
-that command owns the deploy and its `CLAUDE.md` forbids improvising a shorter
-version.
+| File | Replaces | Note |
+|---|---|---|
+| `figure1_web.png` | `sibling-conflict-figure1-narrow.png` | n = 1–8 line chart, corrected title and wording |
+| `figureA_web.png` | `sibling-conflict-figureA-narrow.png` | n = 1–4 line chart, corrected title and wording |
+| `figure_n3_web.png` | *(nothing — new)* | Worked example, all 6 configurations for 3 children. Both panels asked for this. It is **not a repoint**, it's a new figure with no existing slot on the page |
 
-- Copied `figure1_narrow.png` → `assets/sibling-conflict-figure1-narrow.png` and
-  `figureA_narrow.png` → `assets/sibling-conflict-figureA-narrow.png`.
-- Replaced both `![...](...)` blocks in `projects/sibling-conflict.qmd` with raw
-  HTML `<picture>` blocks carrying
-  `<source media="(max-width: 600px)" srcset="...-narrow.png">`, wrapped in the
-  same `quarto-figure quarto-figure-center` / `figure.figure` structure Quarto
-  emits, so existing styling is untouched.
-- **Figure 1's alt text changed**: it quoted the annotation verbatim, and the two
-  renders word it differently ("triples the space of possible conflicts" vs
-  "triples the possibilities"). Alt applies to whichever source loads, so the
-  quotation became a description. Figure A's alt was accurate for both and is
-  unchanged.
-- Verified against a local build served over localhost: fresh load at 375 px
-  fetches both `-narrow` files; fresh load at 1280 px fetches both design files
-  and renders at 799 px, identical to today's desktop behaviour.
+The design-size siblings (`figure1_design.png`, `figureA_design.png`) are what
+the `<img>` fallback in each `<picture>` block should point at — same role the
+`-figureA.png` / `-figure1.png` assets in `RobbinsAnalytics.github.io/assets/`
+play now, just regenerated with brand fonts and corrected wording.
 
-This buys ~1.6× and carries **no panel debt** — `chart-review.md` records every
-seat reading both widths, so the narrow renders are panel-cleared artifacts. It
-is not a fix: 9.8 px is still well under the 15.3 px caption.
+## Already done in the site repo's working tree — uncommitted
 
-## Part 1 — in `cascadia-curiosities`
+**Breakpoint fixed.** Both `<source media="(max-width: 600px)">` in
+`projects/sibling-conflict.qmd` are now `760px`. Checklist note 8 found the
+design render doesn't clear the 12px floor until its column reaches 712px (the
+provenance strip is the binding element) — 600px left a band from 601–763px
+where neither render passed 5.3. This is why the breakpoint moved and where the
+number comes from. **This part of the interim fix is still correct and should
+not be reverted** — it's independent of which files the `<source>` tags point
+at.
 
-### 1. Prerequisites (needs Aaron's approval; both are installs)
+Nothing else was touched. No asset was copied, no `<source>` was repointed, no
+prose was edited, nothing was committed, nothing was published.
 
-- **matplotlib** — not installed on this machine. The figures were never built
-  here; the handoff records the original work as a Cowork session, whose sandbox
-  ships DejaVu and nothing else. That is the whole explanation for the font
-  substitution.
-- **Source Serif 4** — not installed as a system font. Segoe UI is (it ships with
-  Windows). The site has only ever used Source Serif 4 as a webfont, which is why
-  it appeared available: matplotlib reads neither CSS nor webfonts.
+## Part 2 — do this in a session rooted in `RobbinsAnalytics.github.io`
 
-### 2. Build web variants — a third target
+1. **Copy the three web-size PNGs and the two design-size PNGs** into `assets/`,
+   named consistently with the existing `sibling-conflict-figure1.png` /
+   `-figureA.png` convention. `figure_n3_web.png` needs a new name and a new
+   `<picture>` block — there's no existing slot for it.
 
-Keep `build_figure.py`, `build_figureA.py`, `build_narrow.py` producing exactly
-what they produce now. Add web builds alongside; do not repoint the existing
-ones.
+2. **Repoint the two existing `<source>` elements** at the new narrow-slot PNGs.
+   The breakpoint is already `760px`; don't change it back.
 
-Author at **twice the display slot** so the image stays crisp on 2× screens. At
-`dpi=150` with `natural_width = 2 × display_width`, the conversion collapses to
-`css_px ≈ points` — so point sizes can be read straight off the target:
+3. **Add the n=3 worked-example figure.** Where it goes on the page is a design
+   call — it could sit beside the n=1–8 chart as the concrete instance both
+   panels wanted, or stand alone under its own heading. Surface this to Aaron
+   rather than deciding it; it's the kind of placement call this repo's own
+   `CLAUDE.md` would want asked rather than assumed.
 
-| Element | Target |
-|---|---|
-| Chart subtitle | 13 pt → ~13.5 px |
-| Annotations, value labels, end labels | 12 pt → ~12.5 px |
-| Chart title | 18 pt → ~18.75 px |
-| Source strip | 11 pt → ~11.5 px |
+4. **Fix the caption that still says "Figure B."** The `<picture>` block for the
+   n=1–8 chart reads `<figcaption>Figure B — the full range...`. Aaron confirmed
+   in this session's Part 1 that this piece has no Figure B; it's Figure 1
+   throughout the manuscript and the other figures. Rename it.
 
-For the 324 px mobile slot that is `figsize=(4.32, H)` at `dpi=150`. Set
-`SERIF="Source Serif 4"` and `SANS="Segoe UI"`, and **assert the fonts actually
-resolved** — matplotlib silently falls back to DejaVu and prints only a warning,
-which is exactly how this defect shipped the first time.
+5. **The alt text on both existing figures is now wrong** — it quotes the old
+   titles and value labels verbatim ("Eight children allow 3,025 possible
+   conflict configurations, but form only 28 sibling pairs..."). The titles
+   changed (see the commits above: "Of the 3,025 ways eight children can take
+   sides, just 28 are one against one"). Alt text needs to describe what the new
+   renders actually show, not what the old ones did.
 
-### 3. Do not touch the manuscript figures
+6. **The prose in "What it doesn't claim" does not currently mention DejaVu at
+   all** — the original version of this handoff (2026-08-12) described a
+   sentence that either predates this page's current text or was never written
+   the way that draft assumed. Read the section fresh rather than searching for
+   a sentence to edit. What *is* true and worth adding: the manuscript PDF
+   linked from this page is still DejaVu (Part 1 never touched it, by design —
+   it's the artifact the editors received), while the web figures on this page
+   now are not. If the page is going to say anything about typography, that's
+   the accurate distinction to draw.
 
-`figure1_design.pdf` and `figureA_design.pdf` are in the compiled PDF the editors
-received, and the paper is under consideration. Changing figures mid-query buys
-nothing and costs the "this is what they received" property. The web renders are
-additional artifacts, not replacements.
+7. **Four checklist items are recorded `NOT ASSESSED`, not passed, because
+   they're page-level properties Part 1 couldn't verify from this repo.**
+   Resolving them is part of finishing Part 2, not optional polish:
+   - **K8** — Open Graph tags and a favicon on this page.
+   - **5.2** — the image `alt` text stays at levels L1–L3 (chart type, encodings,
+     axis ranges, units; then extrema and comparisons; then trend/shape where it
+     helps) and never reaches L4 (what the data means, implications). Once the
+     alt text is rewritten per item 5, check this against the rule, not just
+     against readability.
+   - **5.7** — dark mode, if the site has one: hue preserved, not an inverted or
+     algorithmically transformed light palette.
+   - **The page half of 5.1** — a real `<table>` of the data belongs on the page,
+     not only a text summary. The qmd already has one (the children/pairs/
+     configurations table); check its column headers still match the corrected
+     framing ("one against one" now, not "sibling pairs" as an independent
+     count) before assuming it clears this on its own.
 
-### 4. Rule 7.4 reading panel on the new renders
+8. **Check 3.2's exception on the web renders depends on that data table
+   existing on the page and naming its basis.** It's the same table as item 7 —
+   two checks, one fix, don't do it twice.
 
-Required — these are charts no panel has read. Use the
-`cascadia-reading-panel` skill.
-
-**Give the seats the mobile display width — ~324–355 px — as one of the widths.**
-A panel that reads at 1050 px will pass a chart that is unreadable on the page.
-That is the gap that produced this handoff.
-
-Record pre-panel notes **before** the panel runs. Panel v2's N is unmeasured
-because that was skipped; `chart-review.md` records the gap honestly and it must
-not be reconstructed. Do not repeat it.
-
-### 5. Record it
-
-New "Panel v3 — web renders" block in `governance/chart-review.md`, full returns
-in `governance/panel-returns.md`, same shape as v1 and v2. Stage by name; never
-`git add -A` or `git add .`.
-
-## Part 2 — in `RobbinsAnalytics.github.io`
-
-1. Copy the approved web renders into `assets/`.
-2. Repoint the `<source>` elements in `projects/sibling-conflict.qmd` at them.
-   The `<picture>` scaffolding is already in place from the interim fix.
-3. **Update the prose.** The page currently says, under "The figures went through
-   the same review as the dashboards":
-
-   > One exception carries onto this page. Both figures were typeset in
-   > DejaVu…
-
-   That becomes wrong for the web renders and stays true for the manuscript
-   figures. It needs to distinguish the two, not be deleted — the manuscript PDF
-   is linked from the same page and is still DejaVu.
-4. `/publish`. The push is the deploy and the single approval.
+9. `/publish`. The push is the deploy and the single approval; this repo's
+   `CLAUDE.md` forbids improvising a shorter version.
 
 ## Decisions Aaron has not made yet
 
-- Whether the web renders should also become the **narrow print** renders, or
-  whether print keeps DejaVu. Print and web have different type-size needs, and
-  the journal may impose its own typography anyway.
-- Whether Figure A and Figure B should keep the portrait 540×630 aspect on
-  mobile, or get a web-specific aspect. The panel is the right place to surface
-  this, not a decision to make in advance.
+- Where the n=3 worked-example figure sits on the page (item 3 above).
+- Whether the web renders' point sizes should also replace the print/narrow
+  build entirely, or whether a narrow target stays for some other use. It's
+  currently unused by anything — the web renders supersede it for every purpose
+  it served on this page — but no one has decided to delete `build_lines.py`'s
+  `narrow` target, so it still exists and still builds.
