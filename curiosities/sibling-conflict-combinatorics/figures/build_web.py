@@ -25,107 +25,17 @@ Wording follows the narrow renders: these occupy the same mobile slot.
 Run from inside figures/ — output filenames are bare.
 """
 
-import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib import font_manager
-from matplotlib import text as mtext
 
-EVERGREEN="#1E7A4C"; RAIN="#9AA6A0"; BASALT="#232B27"; SLATE="#5B6660"; MIST="#E4E7E3"; PAPER="#FCFCFA"
-SERIF="Source Serif 4"; SANS="Segoe UI"
+from cascadia_fig import (EVERGREEN, RAIN, BASALT, SLATE, MIST, PAPER, SERIF, SANS,
+                          SERIF_B, SERIF_I, SANS_R, SANS_B,
+                          width_in, wrap, widest_word, require_glyphs, require_inside)
 
-TITLE_PT=18.0; SUB_PT=13.0; ANNO_PT=12.0; SOURCE_PT=11.0
+TITLE_PT=18.0; SUB_PT=13.0; CAVEAT_PT=12.5; ANNO_PT=12.0; SOURCE_PT=11.0
 W=4.32; H=5.04; DPI=150          # 648 x 756 px, displayed at 324 px
 
 n=list(range(1,9)); configs=[(3**k-2*2**k+1)//2 for k in n]; pairs=[k*(k-1)//2 for k in n]
 assert configs==[0,1,6,25,90,301,966,3025] and pairs==[0,1,3,6,10,15,21,28]
-
-
-# --- fail loudly, twice over -------------------------------------------------
-# matplotlib substitutes DejaVu on an unresolved family and prints only a
-# warning; that is exactly how the original figures shipped in the wrong face.
-# A present font with an absent glyph fails the same silent way, as tofu.
-
-def require_family(family, weight="normal", style="normal"):
-    prop = font_manager.FontProperties(family=family, weight=weight, style=style)
-    path = font_manager.findfont(prop, fallback_to_default=False)
-    got = font_manager.get_font(path).family_name
-    if not got.lower().startswith(family.lower()):
-        raise SystemExit(f"font resolved to {got!r}, expected {family!r} ({weight}/{style})")
-    return path
-
-
-def require_glyphs(path, text, label):
-    font = font_manager.get_font(path)
-    missing = sorted({c for c in text if not c.isspace() and font.get_char_index(ord(c)) == 0})
-    if missing:
-        codes = ", ".join(f"{c!r} U+{ord(c):04X}" for c in missing)
-        raise SystemExit(f"{label}: font at {path} lacks {codes}")
-
-
-SERIF_R = require_family(SERIF)
-SERIF_B = require_family(SERIF, weight="bold")
-SERIF_I = require_family(SERIF, style="italic")
-SANS_R  = require_family(SANS)
-SANS_B  = require_family(SANS, weight="bold")
-
-
-# --- measured wrapping -------------------------------------------------------
-# Hardcoded line breaks were fine when type was small against the canvas. Here
-# the type nearly doubles while the canvas grows a fifth, so breaks get measured.
-
-def width_in(fig, s, **kw):
-    t = fig.text(0, 0, s, **kw)
-    w = t.get_window_extent(fig.canvas.get_renderer()).width / fig.dpi
-    t.remove()
-    return w
-
-
-def words(text):
-    """Tokenise for wrapping, keeping a lone separator with the word before it
-    so no wrapped line can open with a dangling bullet."""
-    out=[]
-    for w in text.split(" "):
-        if not w: continue
-        if out and len(w) == 1 and not w.isalnum():
-            out[-1] = f"{out[-1]} {w}"
-        else:
-            out.append(w)
-    return out
-
-
-def wrap(fig, text, max_in, **kw):
-    lines=[]; cur=""
-    for word in words(text):
-        trial = f"{cur} {word}" if cur else word
-        if cur and width_in(fig, trial, **kw) > max_in:
-            lines.append(cur); cur = word
-        else:
-            cur = trial
-    if cur: lines.append(cur)
-    return lines
-
-
-def widest_word(fig, texts, **kw):
-    """The narrowest column these strings can wrap into without a word clipping."""
-    return max(width_in(fig, w, **kw) for t in texts for w in words(t))
-
-
-def require_inside(fig, pad=1.0):
-    """No text may run off the canvas. The end labels sit outside the axes with
-    annotation_clip off, so an over-wide one silently walks off the edge — which
-    it did on the first render, and which only looking at the PNG caught."""
-    fig.canvas.draw()
-    r = fig.canvas.get_renderer()
-    edge = fig.bbox
-    for t in fig.findobj(mtext.Text):
-        if not t.get_visible() or not t.get_text().strip():
-            continue
-        bb = t.get_window_extent(r)
-        if (bb.x0 < -pad or bb.y0 < -pad or bb.x1 > edge.x1 + pad or bb.y1 > edge.y1 + pad):
-            raise SystemExit(
-                f"text runs off the canvas: {t.get_text()!r}\n"
-                f"    bbox x[{bb.x0:.0f}, {bb.x1:.0f}] y[{bb.y0:.0f}, {bb.y1:.0f}] "
-                f"vs canvas [0, {edge.x1:.0f}] x [0, {edge.y1:.0f}]")
 
 
 def block(fig, y, lines, pt, leading, **kw):
@@ -137,13 +47,14 @@ def block(fig, y, lines, pt, leading, **kw):
     return y
 
 
-def build(fname, title, subtitle, note, xs, series_hi, series_lo, yticks, ylabels,
+def build(fname, title, subtitle, caveat, note, xs, series_hi, series_lo, yticks, ylabels,
           xlim, ylim, value_labels, end_hi, end_lo, note_xy, note_xytext, note_rad):
     fig = plt.figure(figsize=(W,H), dpi=DPI); fig.patch.set_facecolor(PAPER)
 
     text_w = 0.90 * W
     tl = wrap(fig, title, text_w, fontsize=TITLE_PT, family=SERIF, weight="bold")
     sl = wrap(fig, subtitle, text_w, fontsize=SUB_PT, family=SANS)
+    cl = wrap(fig, caveat, text_w, fontsize=CAVEAT_PT, family=SANS, weight="bold")
     # words() keeps a lone separator with the word before it, so no line opens with "·".
     src = ("Source: OEIS A000392, S(n+1, 3) · computed 2026-08-12 · "
            "exact counts, nothing estimated")
@@ -153,16 +64,21 @@ def build(fname, title, subtitle, note, xs, series_hi, series_lo, yticks, ylabel
     # over. The gutter cannot be narrower than the longest word in them
     # ("configurations:") — assuming otherwise is what clipped the first render.
     end_kw = dict(fontsize=ANNO_PT, family=SANS, weight="bold")
-    # Panel v3 finding 8: when the short label wrapped, its second line landed at
-    # x-tick height and read as part of the axis. The gutter therefore also has to
-    # hold that label whole — it is the one that sits down beside the axis.
-    gutter = max(widest_word(fig, [end_hi[0], end_lo[0]], **end_kw),
-                 width_in(fig, end_lo[0], **end_kw))
+    # Panel v3 finding 9: the low label's second line landed at x-tick height and
+    # read as part of the axis. Forcing it onto one line fixed that but spent a
+    # third of the canvas on the gutter. It stacks upward from its anchor instead,
+    # so a wrapped line grows away from the axis and the gutter stays modest.
+    gutter = max(widest_word(fig, [end_hi[0], end_lo[0]], **end_kw), 1.10)
     hi_lines = wrap(fig, end_hi[0], gutter, **end_kw)
     lo_lines = wrap(fig, end_lo[0], gutter, **end_kw)
     for s in hi_lines + lo_lines: require_glyphs(SANS_B, s, "end label")
 
-    ax_left = 0.175
+    # Left margin measured off the widest y-tick label rather than guessed, for
+    # the same reason the gutter is: the labels changed and a hardcoded 0.175 was
+    # spending width the plot needed.
+    ylab = ylabels if ylabels else [str(t) for t in yticks]
+    ax_left = max(width_in(fig, s, fontsize=ANNO_PT*0.92, family=SANS) for s in ylab)/W + 0.052
+
     # Fraction of the axes width at which the end-label text starts.
     anchor = max((end_hi[2][0] - xlim[0]) / (xlim[1] - xlim[0]),
                  (end_lo[2][0] - xlim[0]) / (xlim[1] - xlim[0]))
@@ -170,6 +86,7 @@ def build(fname, title, subtitle, note, xs, series_hi, series_lo, yticks, ylabel
 
     for s in tl: require_glyphs(SERIF_B, s, "title")
     for s in sl: require_glyphs(SANS_R, s, "subtitle")
+    for s in cl: require_glyphs(SANS_B, s, "caveat")
     for s in srcl: require_glyphs(SANS_R, s, "source strip")
     require_glyphs(SERIF_I, note, "annotation")
 
@@ -177,6 +94,12 @@ def build(fname, title, subtitle, note, xs, series_hi, series_lo, yticks, ylabel
     y = block(fig, y, tl, TITLE_PT, 1.24, fontsize=TITLE_PT, family=SERIF, weight="bold", color=BASALT)
     y -= 0.014
     y = block(fig, y, sl, SUB_PT, 1.30, fontsize=SUB_PT, family=SANS, color=SLATE)
+    # Panel v3 findings 1 and 3: two seats independently reported the caveat read
+    # third and in grey, losing to a title that reads like a warning. In body ink
+    # now, on its own line.
+    y -= 0.010
+    y = block(fig, y, cl, CAVEAT_PT, 1.30, fontsize=CAVEAT_PT, family=SANS,
+              weight="bold", color=BASALT)
 
     # Source strip sits on the bottom margin; the axes take what is left between.
     src_step = SOURCE_PT * 1.30 / (H * 72)
@@ -196,11 +119,14 @@ def build(fname, title, subtitle, note, xs, series_hi, series_lo, yticks, ylabel
     ax.annotate("\n".join(hi_lines), xy=end_hi[1], xytext=end_hi[2], fontsize=ANNO_PT, family=SANS,
                 color=EVERGREEN, va=end_hi[3], weight="bold", annotation_clip=False)
     ax.annotate("\n".join(lo_lines), xy=end_lo[1], xytext=end_lo[2], fontsize=ANNO_PT, family=SANS,
-                color=SLATE, va="center", weight="bold", annotation_clip=False)
+                color=SLATE, va="bottom", weight="bold", annotation_clip=False)
 
-    ax.annotate("\n".join(wrap(fig, note, 1.95, fontsize=ANNO_PT, family=SERIF, style="italic")),
+    ax.annotate("\n".join(wrap(fig, note, ax_width*W*0.62, fontsize=ANNO_PT,
+                               family=SERIF, style="italic")),
                 xy=note_xy, xytext=note_xytext, fontsize=ANNO_PT, family=SERIF, style="italic",
-                color=EVERGREEN,
+                # A multi-line block anchors at its bottom by default, so it grows
+                # upward and a longer note climbs out of the plot. Hang it instead.
+                va="top", color=EVERGREEN,
                 arrowprops=dict(arrowstyle="-", color=EVERGREEN, lw=0.8,
                                 connectionstyle=f"arc3,rad={note_rad}"), zorder=4)
 
@@ -229,10 +155,15 @@ def build(fname, title, subtitle, note, xs, series_hi, series_lo, yticks, ylabel
 
 
 build("figure1_web.png",
-      "Eight children allow 3,025 possible conflict configurations, but form only 28 sibling pairs",
-      "Ways n children can split into two opposing sides, others uninvolved, vs. sibling pairs · "
-      "a possibility space, not actual conflicts",
-      "Each added child roughly triples the possibilities.",
+      # v3 finding 8: the pairs are the one-against-one configurations, so the old
+      # "but form only" set a total against its own subset. The title now says so.
+      "Of the 3,025 ways eight children can take sides, just 28 are one against one",
+      # v3 finding 17: the bare algebraic n nearly stopped the least technical seat.
+      "Every possible split into two opposing sides, with anyone left over staying out of it.",
+      "These are possibilities, not arguments that happened.",
+      # v3 finding 3: the multiplier is asymptotic. It is 6.00 and 4.17 before it
+      # is anywhere near 3, so "roughly triples" was not true over this range.
+      "Each added child multiplies the total: sixfold at first, nearer three later.",
       n, configs, pairs,
       [0,1500,3000], ["0","1,500","3,000"],
       (0.8,8.2), (0, max(configs)*1.06),
@@ -242,15 +173,19 @@ build("figure1_web.png",
        # segment. Above the marker only moved the collision — the segment climbs
        # through that space too. Below-right of the marker is the open quadrant.
        ("966",(7,966),(7.32,700),EVERGREEN)],
-      ("Conflict configurations: 3,025", (8,3025), (8.28,2980), "top"),
-      ("Sibling pairs: 28", (8,28), (8.28,90), "center"),
-      (7,966), (1.25,1620), -0.18)
+      ("All ways to take sides: 3,025", (8,3025), (8.28,2980), "top"),
+      ("One against one: 28", (8,28), (8.28,60), "center"),
+      # The curve stays on the floor until n≈7, so the upper-left quadrant is the
+      # one place a four-line note fits without crossing anything.
+      (7,966), (1.15,3080), -0.18)
 
 build("figureA_web.png",
-      "Four children allow 25 possible conflict configurations, but form only 6 sibling pairs",
-      "Ways n children can split into two opposing sides, others uninvolved, vs. sibling pairs · "
-      "a possibility space, not actual conflicts",
-      "At three children the possible conflicts already double the pairs.",
+      "Of the 25 ways four children can take sides, just 6 are one against one",
+      "Every possible split into two opposing sides, with anyone left over staying out of it.",
+      "These are possibilities, not arguments that happened.",
+      # v3 finding 15: "already double" implied the crossing happened earlier than
+      # expected; n = 3 is in fact the first point where the two counts separate.
+      "Three children are the first to separate: six ways, three of them one against one.",
       [1,2,3,4], [0,1,6,25], [0,1,3,6],
       [0,10,20], None,
       (0.85,4.15), (0, 25*1.09),
@@ -260,8 +195,8 @@ build("figureA_web.png",
        # v3 finding 10: stacked under the "6" it reads as one series' pair of
        # labels, and the annotation's doubling claim rests on both being legible.
        ("3",(3,3),(3.30,2.0),SLATE)],
-      ("Conflict configurations: 25", (4,25), (4.16,24.8), "top"),
-      ("Sibling pairs: 6", (4,6), (4.16,6), "center"),
-      (3,6), (1.05,14.2), 0.15)
+      ("All ways to take sides: 25", (4,25), (4.16,24.8), "top"),
+      ("One against one: 6", (4,6), (4.16,6), "center"),
+      (3,6), (1.05,26.6), 0.15)
 
 print("web ok")
