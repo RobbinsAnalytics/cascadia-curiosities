@@ -171,3 +171,101 @@ PANEL v2: 4 seats, simulated · 2 charts (2 widths each) · findings 10 · defec
 Figure A was run through Checklist A with the same mechanics as Figure B (same build pipeline, palette, type, strip, labels). Deltas worth recording: 2.9 needs no exception (all values ≤2 significant figures); K1 PASS (y 0–27.25 contains 0–25, derived); 3.2 PASS — 25 and 6 both carried by end-of-line labels on plotted marks, and the annotation's "double" is verifiable from the printed 6 and 3. Same three written exceptions carry over (fonts; print-safe application; banking N/A). INVARIANT failures 0 · preference score 0.
 
 VERDICT (both figures): SHIPS
+
+---
+
+# PANEL v3 — web renders (figure1_web · figureA_web) — 2026-08-13
+
+Trigger: a third build target added for the web — brand fonts (Source Serif 4 / Segoe UI, previously substituted by DejaVu) and in-chart type sized for the 324 px mobile slot. New artifacts no panel had read → fresh panel.
+
+**Why the widths matter here.** v1 read at 1050 px and v2 at 1050/540 px. The live page displays the figure column at **324 px** — a width no panel had ever read these charts at. That is the gap this panel exists to close, and it is why the seats were given 324 px and 355 px and nothing else.
+
+```
+READING PANEL — sibling-conflict web renders — 2026-08-13
+Decision served (Rule 0.1): whether a general reader of the public essay accepts the
+  piece's claim and understands it as a combinatorial possibility space rather than a
+  prediction about their own household; and whether a mathematically literate reader
+  arriving from the linked manuscript trusts the piece enough to read it.
+Charts panelled: 2   States: static renders at 324 px and 355 px
+Nature: simulated
+
+  Seat 1  Parent of four, non-technical      — simulated — why this seat: the least
+          technical real reader, and the person the artifact is literally about. Rule 0.1
+          names a general essay audience; a roster of three experts would assume a
+          literacy this page does not have.
+  Seat 2  Research mathematician,            — simulated — why this seat: the reader who
+          enumerative combinatorics                       arrives from the Intelligencer
+          submission and decides whether the popular presentation is one they would cite
+          without embarrassment. Owns the question of whether the counted object matches
+          the stated formula.
+  Seat 3  Family therapist, 20 years         — simulated — why this seat: the decision has
+          clinical practice                              a harm dimension no analyst seat
+          reaches — what a distressed parent believes after reading it. Orthogonal to both
+          the maths and the design.
+  Seat 4  visualization reader               — simulated — canvas only; tables and
+                                                           arithmetic excluded
+
+Blindness asserted: design system ☑ · review and build notes ☑ · source data ☑ ·
+                    intended finding from outside the artifact ☑ · other seats' output ☑
+Run: parallel ☑ (single spawn message, four fresh agents)
+Author's pre-panel notes recorded: ☑  (pre-panel-notes.md, 2026-08-13, 12 items, written
+                    before any seat was cast — so N is measured for this panel)
+
+Roster caveat, recorded rather than smoothed over: the domain-seat prompt says "in a
+meeting". For Seat 1 that framing is nonsense — a parent meets this page on a phone —
+so the encounter clause was changed for that seat and left verbatim elsewhere. No other
+deviation from the skill's seat prompts.
+```
+
+### Two seat claims verified before disposition, not taken on trust
+
+Seat 2 asserted that the grey series is a **sub-count of the green one**. Checked by brute-force enumeration over all 3ⁿ assignments rather than from the closed form: the count of configurations in which both opposing sides are singletons equals C(n,2) at every n from 1 to 8 — 28 at n = 8, 6 at n = 4. It is exact, and the enumeration also reproduced the published formula at every n.
+
+Seat 2 and Seat 4 independently asserted that **"roughly triples" is asymptotic**. Also confirmed: successive ratios run 6.00, 4.17, 3.60, 3.34, 3.21, 3.13, approaching 3 from above. Across Figure A's entire plotted range the growth factor is 6.00 then 4.17.
+
+### Disposition table — v3
+
+Sorted by consensus descending. Charts: **1** = figure1_web (n = 1–8), **A** = figureA_web (n = 1–4).
+
+| # | Finding, in the reviewer's words | Seats | n | Chart | Defect? | Novel? | Disposition | Rule |
+|---|---|---|---|---|---|---|---|---|
+| 1 | *"the word 'conflict' is in the title, in the label on the line, and in the note in the middle of the chart, and that's what I'll remember an hour from now — not the disclaimer"* / *"the subtitle is the third thing she reads and it's in grey"* | 1, 3 | **2** | 1, A | yes | yes | **escalated** — the caveat already sits in manuscript body text (v2 finding 8) and in the page prose, but both seats reached the same place independently and Seat 3 states the harm concretely. Renaming the plotted quantity is an editorial change to a term used throughout a manuscript under query. Author's call | 3.2 |
+| 2 | *"The grey series carries no visual information at all; it is a text label with a line drawn under it"* / *"I could not read 28 off the plot at all"* | 2, 4 | **2** | 1 | yes | no | **accepted** — unchanged from v2 finding 5: the pairs line vanishing at scale *is* Figure 1's claim, and removing it orphans the title's second clause. Figure A carries the readable values | 3.2 |
+| 3 | *"the growth factor is 6 then 4.17, nowhere near three, and there's nothing here telling a reader that the tripling is asymptotic"* / *"a reader who took 'each added child' literally across the whole x-range would be misled by a claim they cannot see"* | 2, 4 | **2** | 1, A | yes | yes | **escalated** — verified above. The annotation wording is shared with the manuscript figure, so this cannot be fixed in the web render alone without the two disagreeing. Author's call | 3.2, 3.4 |
+| 4 | *"I couldn't tell whether n = 4 is a deliberate second case or just the first chart zoomed"* / *"Why am I being shown the same chart twice, and which of the two am I supposed to be taking the point from?"* | 1, 2 | **2** | 1, A | yes | yes | **accepted** — page prose sequences the two figures, consistent with v2 finding 6. Noted as a genuine 4.3 exposure: on the web these travel further apart than in the manuscript, and an embed carries neither | 4.3 |
+| 5 | *"The '966' label collides with the curve. The annotation's leader line runs straight through it"* / *"966 and 301 are pressed so close to the line I had to squint"* | 1, 4 | **2** | 1 | yes | no | **fixed** — label moved below-right of its own marker, clear of both the segment and the leader. First attempt (directly above the marker) only relocated the collision; the segment climbs through that space too | 5.5 |
+| 6 | *"Nothing telling me how many of those 3,025 have ever actually occurred in a real household"* / *"how many of those three thousand ever actually happen, and there isn't one"* | 1, 3 | **2** | 1, A | no | — | **rejected** — the subtitle states the chart is a possibility space and the piece makes no empirical claim. Supplying an occurrence rate would be a different piece resting on data that does not exist. The convergence is noted: it is the question the framing invites, which is what finding 1 is about | — |
+| 7 | *"a 6-year-old and a 15-year-old aren't the same kind of pairing, and this counts them as identical"* / *"The chart treats all eight children as interchangeable pieces"* | 1, 3 | **2** | 1, A | no | — | **rejected** — the combinatorial model is over unlabelled children by construction; a chart cannot carry an assumption the model does not make. Worth a sentence in the prose, not a change to the figure | — |
+| 8 | *"Do you know that your grey line is a sub-count of your green line? C(8,2) = 28 is exactly the number of configurations in which both opposing sides are singletons … So this isn't '3,025 possibilities versus 28 pairs,' it's 'all faction splits versus the two-person ones'"* | 2 | 1 | 1, A | yes | yes | **escalated** — verified exactly, above. The strongest finding in the panel and the only one that touches the claim rather than its presentation: the title's "but form only" contrasts a set with its own subset. Single-seat, but a verified mathematical fact does not need consensus. Cannot be resolved in the web render without diverging from a manuscript under query. **Author's call, and it is the one that should be made first** | 3.2, 1.1 |
+| 9 | *"'28' sits below the axis line, at the same height as the '8' tick label, which makes it momentarily read as part of the axis rather than as a series endpoint. I looked at it twice"* | 4 | 1 | 1 | yes | yes | **fixed** — introduced by this build's measured gutter, which wrapped the short end label onto two lines. The gutter now also has to hold that label whole, so it no longer reaches axis height. Incidentally resolves the pre-panel note that Figure 1 wrapped it and Figure A did not | 3.6 |
+| 10 | *"The grey '3' label is the weakest text on either chart … the vertical stack of 6-over-3 near x = 3 momentarily reads as one series' labels"* | 4 | 1 | A | yes | yes | **fixed** — the "3" moved clear of the "6". The seat's reason for weighting it is the right one: the annotation's doubling claim is verifiable only from those two numbers | 3.4 |
+| 11 | *"The grey series is occluded from n=1 to n=4 … A reader could reasonably conclude the grey series starts at 5"* | 4 | 1 | 1 | yes | yes | **accepted** — at a 0–3,025 scale both series sit inside a percent of the baseline through n = 4. This is the condition Figure A was created to answer (v2), and it answers it | 3.6 |
+| 12 | *"The endpoint at 25 sits above the highest labelled tick (20) … the reader estimates by extending the spacing"* | 4 | 1 | A | yes | yes | **accepted** — y-ticks match the design and narrow renders, ylim contains the value (v2 recorded K1 PASS), and the endpoint carries a direct label. Half a tick of extrapolation | 2.4 |
+| 13 | *"children are integers, and the connecting line invites reading a value at 4.5 children"* | 4 | 1 | 1, A | yes | yes | **accepted** — markers are drawn at every integer and the line is a reading aid, unchanged from the renders v1 and v2 cleared. Recorded because no prior panel raised it | 4.1 |
+| 14 | *"you need both conventions pinned down for S(n+1,3) to be the right answer, and the subtitle gives neither … that is a pointer, not a definition"* | 2 | 1 | 1, A | yes | yes | **accepted** — the manuscript defines the construction and the page prose carries it. Recorded as the same 4.3 exposure as finding 4: the chart alone does not define its own object | 4.3 |
+| 15 | *"the crossing happens at n = 3 and the word 'already' reads to me like it happened earlier than expected, when in fact it's the first place anything separates at all"* | 2 | 1 | A | yes | yes | **escalated** — correct on the arithmetic (n=1 is 0 v 0, n=2 is 1 v 1, n=3 is 6 v 3). Annotation wording is shared with the manuscript's Figure A. Author's call | 3.4 |
+| 16 | *"'6' appears twice on this chart for two different things … I read the grey 6 first and briefly thought the lines had met"* | 2 | 1 | A | yes | yes | **accepted** — both are true values on their own marks, in different inks, and finding 10's fix increases the separation. Retained as a known read hazard of the n ≤ 4 range | 3.6 |
+| 17 | *"I got stuck for a second on 'Ways n children can split' … I haven't done letters-instead-of-numbers since school and I nearly stopped reading there"* | 1 | 1 | 1, A | yes | yes | **accepted** — subtitle wording is shared with the narrow renders and the manuscript. Flagged rather than fixed because it is the only finding that reports a reader nearly stopping, and Rule 0.1 puts this seat's literacy at the centre of the decision | 0.1 |
+| 18 | *"No y-axis title. Defensible here, since the axis carries two different units"* | 4 | 1 | 1, A | no | — | **rejected** — both series are counts over the same sibling set (v2 finding 4 rejected on the same basis) and each carries a direct end label. The seat reached the same conclusion itself | — |
+| 19 | *"The green series' value at n=1 is 0 and is unlabelled, so the curve appears to start 'at the axis' without saying so"* | 4 | 1 | 1 | no | — | **rejected** — the value is zero and it is drawn at zero. Figure A labels it, for the range where it matters | — |
+
+### Panel summary — v3
+
+```
+PANEL v3: 4 seats, simulated · 2 charts (2 widths each) · findings 19 · defects 15 · novel 13
+          fixed 3 · accepted 8 · escalated 4 · rejected 4 · multi-seat defects 5
+          D = 7.50 defects/chart · N = 0.87 novel share · R = 0.21 rejected share
+          Widths read: 324 px, 355 px (both figures)
+```
+
+**`escalated` is not one of the skill's three dispositions.** It is recorded here rather than folded into `accepted` because four findings — 1, 3, 8, 15 — cannot be settled by the agent: each would change wording or a claim shared with a manuscript currently under query at The Mathematical Intelligencer, where changing the figures mid-query costs the "this is what they received" property. Calling them `accepted` would assert a judgement nobody made. **The panel is therefore open, not closed.**
+
+**On D = 7.50, against v1's and v2's 4.0.** The rise is not a regression in the charts. Three causes, in the order they contribute: the reading width dropped to 324 px and surfaced collisions no 1050 px panel could see; pre-panel notes were recorded this time, so N is measured rather than absent and the disposition was stricter about what counts; and Seat 4 was unusually thorough. D is a count of candidate defects, not a quality score, and three of the fifteen were introduced by this build and fixed within it.
+
+**Visualization-seat share, per the skill's instruction to track it:** Seat 4 raised 10 of 19 findings (53%), against the ~68% recorded on the Deal Desk panel. The three domain seats produced findings 1, 4, 6, 7, 8, 14, 15, 16, 17 between them, including the one verified mathematical error. On this run the domain floor of three earned its place — a two-seat roster that dropped the mathematician would have missed finding 8 entirely.
+
+**7.1 note.** All four seats' sentences carried the titles' claims, and every quoted number was located on a mark, an axis or a label — except Seat 2's and Seat 4's 28 on Figure 1, which both stated plainly they could not read off the plot. That is finding 2, and it is the return doing exactly the work the "where did you get it" field exists to do.
+
+### No verdict is issued for v3
+
+The checklist has not been run against the web renders, and four findings are open pending the author. Recording `SHIPS` here would carry a claim neither the panel nor the checklist supports. The renders are built, three panel defects are fixed, and the remaining decisions are Aaron's.

@@ -273,6 +273,138 @@ Nothing is cut off or overlapping at either width; the narrow render holds up we
 - The narrow version rewords the annotation and changes the y-ticks. Neither is wrong; just be aware the two widths are not identical text.
 - Same as Chart 1: the formula disappears from the subtitle at narrow width.
 
+---
+
+# PANEL v3 — verbatim returns — web renders — 2026-08-13
+
+Charts as given to the seats: **Chart 1 = figure1_web (n = 1–8)**, **Chart 2 = figureA_web (n = 1–4)**.
+Each seat received both charts at **324 px and 355 px** — the display widths, not the 648 px natural size.
+Roster recast for this artifact; no seat carried v1 or v2 context. Returns are unedited.
+
+## Seat 1 — Parent of four, non-technical
+
+**Chart 1 — the one that goes up to eight children**
+
+1. The sentence. It's saying that with eight kids there are over three thousand ways they could take sides against each other, even though there are only 28 actual pairs of them — and the line barely moves until about six children and then shoots straight up off the top.
+
+2. The number. 3,025. I got it twice without looking hard: it's in the big bold title at the top, and it's on the right-hand end of the green line where the label says "Conflict configurations: 3,025". The other one I'd probably repeat is 28, from the grey label at the end of the flat line ("Sibling pairs: 28"). I could not have got either of those off the vertical axis — that only has 0, 1,500 and 3,000 on it, so the little numbers along the bottom of the green line (90, 301, and 966 sitting right up against the steep bit) are the only way to know what's happening down there, and at the smaller size 966 and 301 are pressed so close to the line I had to squint to be sure which was which.
+
+3. The question. Is this telling me anything about my actual house, or is it just counting? Because the small grey print says "a possibility space, not actual conflicts", but the word "conflict" is in the title, in the label on the line, and in the note in the middle of the chart, and that's what I'll remember an hour from now — not the disclaimer.
+
+4. The gap. Where four children is. My lot are four and there's no number on the line at 4 — it's flat on the floor along with 1, 2 and 3, and the axis is so stretched by the 3,000 at the top that everything under about five children looks like nothing at all. I also looked for some sense of how many of those three thousand ever actually happen, and there isn't one. And I got stuck for a second on "Ways n children can split" in the grey line under the title — I haven't done letters-instead-of-numbers since school and I nearly stopped reading there.
+
+**Chart 2 — the one that goes up to four children**
+
+1. The sentence. It's the same chart as the other one but stopping at four children, which is what I've got — 25 ways to fall out and 6 pairs of siblings — and the green line pulls away from the grey one somewhere around three.
+
+2. The number. 25, from the bold title and again from the green label at the top right end of the line ("Conflict configurations: 25"). And 6, from the grey "Sibling pairs: 6" at the end of the grey line. This one I could half-check off the axis too — the green dot at 4 children sits just under the 20-something mark, which fits.
+
+3. The question. Why am I being shown the same chart twice, and which of the two am I supposed to be taking the point from? If the answer is "this is your family, the other is a big family", fine, but nobody said that.
+
+4. The gap. What any of it means in practice. It tells me my four kids have 25 possible ways of splitting into sides, and I don't know whether that's a lot, whether it's more than it should be, or what I'm meant to do differently. It also doesn't tell me anything about ages, and mine are 6 to 15 — a 6-year-old and a 15-year-old aren't the same kind of pairing, and this counts them as identical. And with the line stopping at 4, I couldn't tell from this chart alone that it carries on going up like a rocket; I only know that because I saw the other one.
+
+**Both charts.** The one thing that genuinely nagged me across both: they're the same picture with two different sizes of number, and the honest small print at the bottom ("exact counts, nothing estimated", "not actual conflicts") is doing a lot of quiet work against a title that reads like my house is a powder keg. If someone showed me these while I was reading on my phone, what I'd walk away with is "eight kids, three thousand ways to argue" — not the caveat.
+
+## Seat 2 — Research mathematician, enumerative combinatorics
+
+**Chart 1**
+
+1. The sentence. It's a Stirling-number growth curve dressed up as a family-dynamics fact — the count is S(n+1,3) for splitting n children into two opposing camps with the rest sitting out, and it's correct, but the "but only 28 pairs" framing puts two different kinds of object side by side without saying how they relate.
+
+2. The number. 3,025 — I got it from the green callout at the right-hand end of the curve, the two-line label reading "Conflict configurations: 3,025". I'd also repeat 966, which is printed just above the green line at n = 7. I could not read 28 off the plot at all; I got it from the grey text label on the right, not from the axis, because on a 0–3,000 scale the grey line is indistinguishable from the baseline.
+
+3. The question. Do you know that your grey line is a sub-count of your green line? C(8,2) = 28 is exactly the number of configurations in which both opposing sides are singletons — the two-person quarrels. So this isn't "3,025 possibilities versus 28 pairs," it's "all faction splits versus the two-person ones," and that's a much better sentence than the one on the chart. I'd want to know whether that was understood and left out, or not noticed.
+
+4. The gap. The definition. I had to reconstruct for myself whether the two sides are ordered or unordered and whether the uninvolved group is allowed to be empty — you need both conventions pinned down for S(n+1,3) to be the right answer, and the subtitle gives neither. The source line names A000392 and S(n+1,3), which I appreciate, but that is a pointer, not a definition, and a reader who can't decode Stirling notation gets nothing. I also went looking for a log axis, or at least a second panel, because on this scale everything below n = 5 is flat against zero and the chart shows me one interesting point and six dead ones.
+
+**Chart 2**
+
+1. The sentence. Same quantity truncated to n ≤ 4, and honestly it reads better than the eight-child version because on a 0–25 scale you can actually see both series and watch the green one pull away from the grey.
+
+2. The number. 6 — from the label sitting just above the green line's third point, at n = 3. Though I'll say that "6" appears twice on this chart for two different things: 6 conflict configurations at n = 3 on the green line, and "Sibling pairs: 6" as the grey end label at n = 4. I read the grey 6 first and briefly thought the lines had met.
+
+3. The question. Your annotation says "At three children the possible conflicts already double the pairs" — at n = 3 it's 6 against 3, which is exactly double, and at n = 2 it's 1 against 1. Is "already" meant to mark the crossing point? Because the crossing happens at n = 3 and the word "already" reads to me like it happened earlier than expected, when in fact it's the first place anything separates at all.
+
+4. The gap. Why this chart exists next to the other one. Given both, I couldn't tell whether n = 4 is a deliberate second case or just the first chart zoomed, and nothing on either says "this is the same curve, first four points." I also looked for the ratio being asserted — the other chart says the possibilities roughly triple per child, which is true in the limit (the ratios run 6, 4.17, 3.6, 3.33, 3.21, 3.13), but on this chart's range the growth factor is 6 then 4.17, nowhere near three, and there's nothing here telling a reader that the tripling is asymptotic rather than what they're looking at.
+
+## Seat 3 — Family therapist, 20 years clinical practice
+
+**Chart 1**
+
+1. The sentence. It's a maths chart that has been dressed up in the language of family conflict — it counts the ways you could theoretically sort eight kids into two opposing camps, calls that number "conflict configurations," and the headline reads like a warning about big families even though the small print underneath admits it isn't describing any actual conflict.
+
+2. The number. "Conflict configurations: 3,025" — the green label at the top right, at the end of the rising line, which matches the 3,025 in the title. I'd also repeat 966, which is printed just above the line at 7 children on the horizontal axis. The other side of the comparison, "Sibling pairs: 28," I only got from the grey label on the right — I could not read 28 off the vertical axis, because on a scale that goes to 3,000 the grey line sits flat on the baseline and I can't tell it apart from zero.
+
+3. The question. What is one configuration, in a family? If I picture the Murrays, with their six, what real thing in that house is one of those 301 — an argument, an alliance that lasted an afternoon, a seating arrangement that could occur in principle? Because if the honest answer is "none of them, it's an arrangement that could exist on paper," then I want to know why the word "conflict" is in the label at all.
+
+4. The gap. Anything connecting the count to what happens. No frequency, no time — 3,025 what, per week, ever, in a lifetime? Nothing telling me how many of those 3,025 have ever actually occurred in a real household, which I'd guess is a tiny fraction, and that fraction is the interesting number and it isn't here. And nothing about the thing families actually vary on: two of the eight might be at each other constantly and the other six never take a side. The chart treats all eight children as interchangeable pieces.
+
+I also want to flag what I think a parent does with this, because it's the part that worries me most. A mother of five who is already frightened that she has made her house unmanageable reads the title, sees a line going nearly vertical, reads "each added child roughly triples the possibilities," and takes away that she has multiplied her family's suffering by having another baby. The subtitle says "a possibility space, not actual conflicts," but the subtitle is the third thing she reads and it's in grey.
+
+Both sizes read the same to me. At the smaller one the "966" label sits tight against the line but I could still read it.
+
+**Chart 2**
+
+1. The sentence. Same chart with the numbers small enough to be believable, which paradoxically makes it more misleading — at four children the two lines are close enough that it looks like a real comparison of two real quantities, and the annotation tells me conflicts already "double" the pairs, which is a sentence about actual conflict that the data underneath doesn't support.
+
+2. The number. The "6" printed just above the green line at 3 children, with the "3" just below the grey line at the same point — that's the doubling the annotation is talking about. And "Conflict configurations: 25" from the green label at the end of the line at four children.
+
+3. The question. The annotation says "At three children the possible conflicts already double the pairs" — did you mean "possible conflicts" there? The title says "configurations" and the subtitle says these aren't conflicts, but the note in the middle of the chart, which is the bit my eye went to first, says conflicts. That's the sentence a parent will quote back to me, and as written it says a family of three has six conflicts.
+
+4. The gap. The thing I actually wanted, which is what happens between two children versus three. That's the real clinical question — whether adding a third genuinely changes the dynamic, and it does, in ways I see weekly: triangulation, the odd-one-out, two kids forming a bloc against a parent. This chart has a number sitting right there at three children that looks like it answers that, and it doesn't; it's counting arrangements, not describing what a third child does to a household. I also couldn't find any indication of whether anyone has ever counted a real family against this, or whether the whole thing is arithmetic from a formula. The source line says "exact counts, nothing estimated," which I read as honest about the maths and silent about the families.
+
+## Seat 4 — Visualization reader (canvas only)
+
+**Chart 1**
+
+1. What it is about. Before reading the title: a single steep hockey-stick curve in dark green rising from a flat floor to a point at the top right, with a second, essentially flat grey line running along the baseline. My first read was "something grows explosively with the count on the x-axis while a second thing stays at nothing." The x-axis is labelled *Number of children*, 1 through 8. Then the title: *"Eight children allow 3,025 possible conflict configurations, but form only 28 sibling pairs."* That matches what I saw, with one addition the picture alone did not give me — that the flat grey line is not zero but 28. The subtitle does real work here and I'd count it as part of the title: it tells me this is a possibility space, not observed conflicts. Without it I would have read the green curve as a count of things that happened.
+
+2. Does the picture support the claim.
+- *"Eight children"* — yes, x = 8 is the last tick and both endpoint markers sit on it.
+- *"3,025 possible conflict configurations"* — partly. The green endpoint marker sits just above the 3,000 tick, so the geometry supports "a bit over three thousand." The precise 3,025 comes from the text label, not the plot.
+- *"only 28 sibling pairs"* — on faith entirely. The grey endpoint is on the zero baseline. At a scale whose ticks are 0 / 1,500 / 3,000, 28 is one pixel of nothing. The plot cannot distinguish 28 from 2 or from 0. The grey series carries no visual information at all; it is a text label with a line drawn under it.
+- *"but form only"* — the contrast the word "only" asserts is the one thing the picture does convey powerfully, arguably too powerfully: it reads as "3,025 versus nothing" rather than "3,025 versus 28."
+- The in-chart annotation, *"Each added child roughly triples the possibilities,"* is **not checkable from the plot**. A constant multiplicative ratio has no visual signature on a linear axis — an exponential and a cubic both look like this hockey stick. The reader can partially verify it by dividing the printed labels (90 → 301 → 966 → 3,025), which is arithmetic on labels, not reading a chart. And the labelled portion is the only place it holds: the earlier, unlabelled part of the curve grows much faster than 3× per step (1 → 6 at n=2→3 is sixfold), so a reader who took "each added child" literally across the whole x-range would be misled by a claim they cannot see.
+
+3. Right form for the claim. Two claims are being carried and the form serves only one. For the magnitude contrast, a linear line chart works — the gap is the message. For the growth-rate claim in the annotation, it is the wrong form: a log y-axis would render "roughly triples" as a straight line of constant slope and would simultaneously rescue the grey series from the baseline, letting 28 be *seen*. That is a real trade — a log axis costs a lay reader something — but as drawn, the chart asserts a ratio and draws only a silhouette. Secondary point: children are integers, and the connecting line invites reading a value at 4.5 children. The markers are drawn, which mitigates it, but the line is doing interpolation that the underlying quantity does not admit.
+
+4. Hard to read.
+- **The "966" label collides with the curve.** The annotation's leader line runs straight through it, and the label sits flush against the steepest segment of the green line. This is the worst spot on the chart and it is tighter at 324px than at 355px.
+- **The grey series is occluded from n=1 to n=4.** It only becomes separately visible around x=5; before that it is underneath the green line. A reader could reasonably conclude the grey series starts at 5.
+- **"28" sits below the axis line**, at the same height as the "8" tick label, which makes it momentarily read as part of the axis rather than as a series endpoint. I looked at it twice.
+- The value labels 90 / 301 / 966 are roughly 9px at 324px — legible, but at the floor.
+- The green series' value at n=1 is 0 and is unlabelled, so the curve appears to start "at the axis" without saying so.
+- No y-axis title. Defensible here, since the axis carries two different units (configurations and pairs), but it means the reader must get the units entirely from the two end labels.
+
+5. Grayscale. Survives. I converted it and checked. Dark-green versus light-grey separates cleanly on lightness alone, and both series are labelled directly at their right ends, so nothing depends on hue or on a legend. One small loss: the italic annotation is green, tying it to the green series by colour; in grayscale it becomes the same tone as the subtitle and axis text, and the tie has to be made from the word "possibilities" instead.
+
+6. The number. I would quote: **at eight children, the green *Conflict configurations* marker sits just above the 3,000 tick on the y-axis** — so, a little over three thousand. That is the most I can get from the plot itself; the exact 3,025 is read off the text label beside the marker, not off the geometry. For the second figure I have to say it plainly: **28 is not readable from this plot.** The grey endpoint at x = 8 lies on the zero baseline and there is no axis resolution anywhere near it. That number exists only as text.
+
+**Chart 2**
+
+1. What it is about. Before the title: same construction as Chart 1, but only four x positions, and now both series are actually visible as separate curves — a green one bending upward and a grey one rising gently below it, diverging after x = 2. My read was "two counts that start together and separate." Title: *"Four children allow 25 possible conflict configurations, but form only 6 sibling pairs."* No divergence from what I saw. This is the same series and the same source line as Chart 1, restricted to n = 1–4.
+
+2. Does the picture support the claim.
+- *"Four children"* — yes, x = 4 is the last tick.
+- *"25 possible conflict configurations"* — yes, readable. The green endpoint is roughly a quarter of the 0-to-20 span above the 20 tick, which estimates to about 25. It requires extrapolating the tick spacing past the last label, but it works.
+- *"only 6 sibling pairs"* — yes, and this is the important difference from Chart 1. The grey endpoint sits at about six-tenths of the way from 0 to 10. I can read 6 off the plot.
+- *"but form only"* — the contrast here is honest: roughly four-to-one, and it looks roughly four-to-one.
+- The annotation, *"At three children the possible conflicts already double the pairs,"* **is checkable from the plot.** At x = 3 the green marker is at 6 and the grey at 3, both labelled, and the green marker sits at visibly twice the height of the grey one. The picture and the sentence agree.
+
+3. Right form for the claim. Yes. Because the two series are within one order of magnitude, the linear line chart shows the divergence as an actual widening gap, which is exactly the claim. The same integer-interpolation caveat applies — the line implies values between whole children — but with only four x positions and prominent markers it is a small cost.
+
+4. Hard to read.
+- **The grey "3" label is the weakest text on either chart.** It is light grey, roughly 9px at 324px, and sits directly under the dark "6". At the small size the vertical stack of 6-over-3 near x = 3 momentarily reads as one series' labels before the colour separates them. That the annotation's whole verifiability rests on those two numbers makes this the label I would least want to be faint.
+- **The endpoint at 25 sits above the highest labelled tick (20)** with no tick above it, so the reader estimates by extending the spacing. At 324px the marker is also close to the top of the plot area — not clipped, but tight.
+- The annotation block sits close to the curve; its leader line is legible at 355px and slightly cramped at 324px.
+- Same absence of a y-axis title, same reason, same acceptability.
+
+5. Grayscale. Survives, and I checked it converted. The dark/light separation holds and both series are end-labelled. The one degradation: the grey "3" label, already low-contrast in colour, is the first thing that would go on a mediocre print or a low-brightness phone screen — and losing it removes half the evidence for the annotation's doubling claim.
+
+6. The number. I would quote: **at three children there are 6 conflict configurations against 3 sibling pairs** — read from the green marker sitting a little past halfway between the 0 and 10 ticks at x = 3, and the grey marker just under a third of the way, cross-checked against the "6" and "3" labels at those markers. Unlike Chart 1, I get this from the plot; the labels confirm rather than substitute.
+
+**One cross-chart observation.** These are the same series at two x-ranges, and the difference in x-range is what decides whether the chart works. At n ≤ 4 both quantities are visible and the comparison is drawn. At n ≤ 8 the second quantity collapses onto the baseline and the comparison is only asserted in text. If both ship, Chart 1's "28" is the weak point in the pair.
+
 5. Grayscale? Survives, same reasons as Chart 1. Ironically the grey series is already nearly invisible in colour, so grayscale loses nothing that wasn't lost.
 
 6. The number. I'd quote 3,025 possible configurations at eight children — green endpoint at x=8, sitting just above the 3,000 axis tick, direct label. The 28, by contrast, I could *not* get off the plot itself — only off its text label — and I'd say so if quoting it.
