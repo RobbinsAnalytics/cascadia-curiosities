@@ -35,3 +35,24 @@ New, introduced by this re-render — my own list, not the panel's:
 10. On figure1_web the 90 / 301 / 966 value labels sit close to both the curve and the annotation's leader line; possible crowding at 324 px.
 11. Aspect is held at the narrow renders' 540×630 portrait. That was inherited, not designed for this type size, and the plot is now short relative to its width.
 12. Wording follows the narrow renders, so the annotation reads "triples the possibilities" where the manuscript figure reads "triples the space of possible conflicts". A reader moving between the page and the linked PDF sees two wordings.
+
+---
+
+2026-08-13 · Panel v4 · four charts: figure1, figureA, and the new n=3 and n=4 enumerations · author of record: Aaron Robbins; charts built by agent
+
+Recorded before Panel v4 ran and before any seat was cast. All four charts now
+carry the corrected subset framing, brand fonts, and the caveat in body ink; two
+of them did not exist when v3 ran.
+
+1. Figure 1's title is longer than it was and takes three lines at 324 px, so the type block occupies roughly the top third of the canvas before any data appears.
+2. The n=4 enumeration is twenty-five cells. A reader may take the count on trust and never check the cells, in which case the figure is decoration with a citation.
+3. In the enumerations, "one side" (filled circle) against "the other" (ringed circle) may not read as *opposing*. The caption spells out the split, but the marks alone may be ambiguous, and ring-versus-fill is a weaker signal than position would be.
+4. Children are lettered A–D. A parent may not map letters onto their own children, which is the objection the v3 parent seat raised about the line charts in a different form.
+5. Figure 1's one-against-one series still sits on the baseline and is unreadable as data. Accepted at v3 as the claim itself; unchanged here, and a fresh seat may raise it again.
+6. The caveat line now appears identically on all four figures. On a page carrying several of them it may read as boilerplate and stop being seen — the opposite of what raising its prominence was for.
+7. The end labels no longer contain the word "conflict" ("All ways to take sides", "One against one"), which is more accurate but may loosen the figures' tie to the essay's subject.
+8. The enumerations and the line charts use different visual languages, so a reader moving between them has to re-learn what is being shown.
+9. The n=4 figure is portrait and tall; at 0.95 textwidth it will occupy most of a manuscript page, and it is the only figure a reader cannot take in at a glance.
+10. "nobody left out" repeats on nineteen of the twenty-five n=4 cells and may read as noise rather than information.
+11. The line charts' note sits in the upper-left with a leader crossing empty plot space. It is shorter than it was, but it is still the longest single element on the canvas.
+12. Nothing in the figures states that the two enumerations and the two line charts are the same object counted two ways. That was v3 finding 4, accepted on the grounds that page prose sequences them; there are now four figures rather than two.

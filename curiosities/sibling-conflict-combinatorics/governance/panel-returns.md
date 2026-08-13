@@ -405,6 +405,165 @@ Both sizes read the same to me. At the smaller one the "966" label sits tight ag
 
 **One cross-chart observation.** These are the same series at two x-ranges, and the difference in x-range is what decides whether the chart works. At n ≤ 4 both quantities are visible and the comparison is drawn. At n ≤ 8 the second quantity collapses onto the baseline and the comparison is only asserted in text. If both ship, Chart 1's "28" is the weak point in the pair.
 
+---
+
+# PANEL v4 — verbatim returns — corrected figures — 2026-08-13
+
+Charts as given: **Chart 1 = figure1** (n ≤ 8), **Chart 2 = figureA** (n ≤ 4),
+**Chart 3 = n=3 enumeration**, **Chart 4 = n=4 enumeration**.
+Charts 1–3 at 324 px and 800 px; chart 4 at 800 px only. Roster as v1–v3's Rule 0.1
+decision requires, fresh agents, no v3 context carried. Returns unedited.
+
+## Seat 1 — Parent of four, non-technical
+
+**Chart 1.** 1. The sentence. It's the one showing that once you get to eight kids there are over three thousand ways they could split into two camps, and it goes up like a rocket at the end.
+
+2. The number. 3,025 — it's in the headline and again in green at the top right end of the line, "All ways to take sides: 3,025". The other one I'd repeat is 966, which is printed just below the line at the 7-children point.
+
+3. The question. The little italic note says "Each added child multiplies the total: sixfold at first, nearer three later" — what does that actually mean, and sixfold from what to what? I read it twice and still couldn't tell you which numbers it's talking about.
+
+4. The gap. Four children. There's a dot at 4 on the bottom axis but nothing written by it, and the line is flat on the floor there, so my own family doesn't get a number on this chart at all. I also couldn't see the grey "one against one" line — on the phone it's a hairline sitting on the zero and the "28" is off on the right on its own; I took the 28 on trust rather than reading it off anything. On the printed one I could at least see there was a grey line there.
+
+**Chart 2.** 1. The sentence. Same idea as the first one but stopped at four kids — 25 ways to split up, six of which are one kid against one other.
+
+2. The number. 25, off the headline and the green label at the end of the line. And 6 at the 3-children point, printed just under the bend in the green line.
+
+3. The question. Why does the grey line and the green line start in the same place and then split at three — and does "1" at two children mean two kids can only fall out one way? That seems obviously true when I say it out loud but I had to work it out rather than read it.
+
+4. The gap. Nothing tells me how many of the 25 involve everybody being dragged in versus somebody staying out of it, which is the bit I'd actually care about in my house. And the note "Three children are the first to separate: six ways, three of them one against one" — on the phone that italic block sits right on top of the plot and I read it before I'd worked out what the two lines were, which muddled me.
+
+**Chart 3.** 1. The sentence. It just draws out all six ways three children can take sides, and half of them are one against one.
+
+2. The number. 6 and 3, straight from the headline. Then I counted the little rows myself — three under "one against one" and three under "one against two" — so I'd say six with some confidence because I counted them, not because a number told me.
+
+3. The question. What are the three shades of the circles meant to be? A is a solid dark green blob, B is green but hollow, C is grey. I guessed grey means out of it, and the two greens are the two sides, but there's nothing on the chart saying so and I only got there from reading "C stays out" underneath.
+
+4. The gap. Four children. This is the clearest of the lot to look at and it's about a family that isn't mine. Also nothing about it being harder or easier when the kids are years apart in age.
+
+**Chart 4.** 1. The sentence. It's the full list of every way four kids can end up on opposite sides — twenty-five of them, and it takes up a whole page.
+
+2. The number. 25 and 6 from the headline. I also read the group headings as my numbers: six pairs in "one against one", then "one against two", then four in "one against three", then three in "two against two". I counted the one-against-two block as twelve. Nothing on the chart adds those up for me — I did it on my fingers and got 25, which was reassuring.
+
+3. The question. Why is "two against two" only three rows when "one against two" is twelve? I stared at that. Is A+B vs C+D counted as the same as C+D vs A+B, and if so, is the same rule being applied to the other groups?
+
+4. The gap. A total, printed somewhere, saying 25. And the honest one: this is the chart for my family and it tells me there are twenty-five ways it can go wrong, but the bold line at the top says these are possibilities, not arguments that happened — so I finished it not knowing whether anyone's saying four kids is harder than three, or just that four kids has more arrangements on paper. That's the thing I came to these for and none of the four answered it.
+
+## Seat 2 — Research mathematician, enumerative combinatorics
+
+**Chart 1.** 1. The sentence. It's a growth curve for the number of ways n children can split into two opposing camps with the leftovers sitting out, running to 3,025 at eight children, and the point of it is that the tiny flat grey line underneath — the plain one-against-one cases — is a vanishing fraction of the total.
+
+2. The number. 966, from the label sitting just right of the green point above n = 7 on the x-axis. I'd also repeat 3,025, which is on the end-of-line label top right ("All ways to take sides: 3,025") and again in the headline, and it agrees with S(9,3), which I did check.
+
+3. The question. Are the two sides unlabelled — is "A's lot versus B's lot" being counted once or twice? Nothing on this chart tells me, and the whole formula hinges on it. (I can back out from the source line that it's S(n+1,3), so unordered, but that's me doing the work, not the chart.)
+
+4. The gap. A formula, or even a name, for the grey series. The green one is sourced as S(n+1,3); the grey one is just 28 with no rule attached, and it's obviously n(n−1)/2, but the chart makes the reader supply that. Also no y-axis title — I inferred "number of ways" from the title. And the grey line is pinned flat on the floor of a 3,000-high axis, so the "just 28" claim cannot actually be read off the line; it only exists as text at the end.
+
+**Chart 2.** 1. The sentence. Same chart as the first one but truncated to n ≤ 4 so you can actually see the two series apart from each other, and it's where the numbers are small enough to check by hand.
+
+2. The number. 6, from the label just above the green point at n = 3, which is where the annotation line lands. That one I verified in my head — three children give three one-versus-one splits and three one-versus-two splits — and it's right.
+
+3. The question. What does "three children are the first to separate" mean? On first read I took it as a claim about the children and thought it was wrong, because the chart's own point at n = 2 is 1, and two children separating into A versus B is plainly a separation. I now think it means the first place the two lines separate from each other. That cost me a good twenty seconds and I'd want it reworded.
+
+4. The gap. Why this chart exists alongside chart 1. They are the same function on different windows, and nothing says whether this is a zoom or a different thing. If they're both going in, one of them should say "detail of the left end."
+
+**Chart 3.** 1. The sentence. A full enumeration of the six configurations for three children, split into the three one-against-one and the three one-against-two, and it's complete and correct — this is the one that makes the whole construction legible.
+
+2. The number. 6, from the headline, but the number I'd actually repeat is that I counted six panels on the page and got six, which is worth more to me than the label. The individual configurations carry no numbers, just captions like "A vs B / C stays out."
+
+3. The question. What are the three circle states? I read filled-dark, ring-outline, and grey, and I reverse-engineered them from the captions — filled is one side, outline is the other, grey is out. There's no key. It resolved in a couple of seconds because the captions are right there, but I did have to resolve it.
+
+4. The gap. Nothing that ties this back to the formula. This is the case where S(4,3) = 6, and saying so here is what would let a reader trust the 3,025 in chart 1 rather than take it on faith. The source line says "all 6 configurations ... enumerated · OEIS A000392" but drops the "S(n+1,3)" that charts 1 and 2 carry.
+
+**Chart 4.** 1. The sentence. The full 25 for four children, grouped 6 / 12 / 4 / 3 by split shape, and the counts are right — I checked each block and the total.
+
+2. The number. 12, which is not printed anywhere; I got it by counting the tiles under "One against two" (three rows of four). The printed numbers are 25 and 6 in the headline. That's my real answer: the group sizes, which are the interesting part, are only recoverable by counting panels.
+
+3. The question. What happens to this on a phone? The other three charts came with a narrow version and this one didn't, and 25 tiles four-across is the one that won't survive the reflow.
+
+4. The gap. The block sizes as numbers — 6, 12, 4, 3 next to their headings. Those four numbers are the actual combinatorial content of the page (they're 6, 12, 4, 3 summing to 25, and they're the shape-by-shape decomposition), and they're left implicit. I'd also have liked the empty-versus-nonempty convention stated once: the sidelines can be empty, the two sides can't. It's inferable from the fact that "A+B vs C+D" appears with nobody left out, but it's a convention, not a deduction.
+
+**Across all four:** the mathematics is sound as far as I checked it. S(n+1,3) is the right count for unordered two-sided splits of n with a possibly-empty remainder, 25 and 3,025 are the correct values at n = 4 and n = 8, the grey series is n(n−1)/2, and the two enumerations are exhaustive with no duplicates. I would not be embarrassed to cite the identity. What I'd want before doing so is the unordered-sides convention said out loud, and the grey series given a formula.
+
+## Seat 3 — Family therapist, 20 years clinical practice
+
+**Chart 1.** 1. The sentence. It's a count of every way you could theoretically divide eight kids into two camps, and the point it's making is that the number explodes — one-on-one is a vanishingly small slice of what's arithmetically possible, which is not the same thing as saying it's rare in the house.
+
+2. The number. 28. It's on the right-hand end of the flat grey line, labelled "One against one: 28," and it's also in the headline. I'd also repeat 3,025 — same place, the green label at the top right end of the curve.
+
+3. The question. Are these 3,025 possibilities being treated as if they were equally likely? Because if they are, then "just 28 are one against one" is a statement about arithmetic dressed up as a statement about families, and a parent will read it as "one-on-one fights are unusual, so the ganging-up you're seeing is normal."
+
+4. The gap. Anything at the small end. Most of the families I see have two or three children, and on this chart everything from one to five children is pinned flat on the floor at zero — the axis runs to 3,000, so the numbers that would matter to an actual family are invisible. I also wanted the grey line's values along the way, not just its endpoint; I can't read what "one against one" is at four children from this chart. And the thin curved leader line coming down off the annotation read to me for a second as a second data series falling — I had to look twice to see it was pointing at a dot. On the phone version that annotation sits right in the middle of the plot and the "966" label lands on the line itself, but the two big numbers still came through.
+
+**Chart 2.** 1. The sentence. Same idea as the eight-child one but scaled down to a family size I actually meet, and at this size the two lines are close enough together that you can see one-on-one is a real share of the total rather than a rounding error.
+
+2. The number. 6 — the label sitting just above the bend in the green line at three children on the x-axis. The grey line's "One against one: 6" at the right-hand end at four children is also 6, which stopped me for a moment; I had to check I wasn't reading the same label twice.
+
+3. The question. Why does the grey "one against one" line here climb visibly and the green line's story feels proportionate, while the eight-child chart makes the same relationship look like almost nothing? If the honest message is "the bigger the family, the more ways there are for it to fracture," then this chart and the last one are telling a parent two different emotional stories from the same maths.
+
+4. The gap. Zero at one child is on there, and I understand why, but a single child appearing on a chart about taking sides is odd on first read — I looked for a note on what a lone child contributes and didn't find one. Same leader-line confusion as chart 1: the thin curve descending from the annotation reads as data before it reads as a pointer. Mobile was fine for this one; the numbers 0, 1, 6 and 25 all survived.
+
+**Chart 3.** 1. The sentence. This is the one I'd actually put in front of a family — it stops being a curve and becomes six little pictures of who's with whom and who's standing outside, and "C stays out" is a sentence a parent recognises immediately.
+
+2. The number. 3, from counting the three panels under the heading "One against one — these are the sibling pairs": A vs B, A vs C, B vs C. I didn't need a label; I counted the pictures, which is the point.
+
+3. The question. What are the two greens? Solid circle versus outlined circle — I worked out from "A vs B+C" that solid is the one and the rings are the other side, and grey is out, but there's no key anywhere and I got there from the captions underneath, not from the picture. Also: in the top row somebody is always left out, and I'd ask whether the "stays out" child is meant to read as neutral, because in the families I see the child standing outside is very often the one who is most affected.
+
+4. The gap. There's no picture for the case that comes up most in my room — nobody has taken sides, or two are in it and the third is trying to broker. Six configurations, and none of them is "no conflict." A parent will scan this and see six ways their three children can be in opposition and no way for them not to be. That's not what the maths says, but it's what the picture shows. Mobile version held up; the letters stayed legible.
+
+**Chart 4.** 1. The sentence. It's the three-child picture done exhaustively for four children, and the thing that came off the page for me wasn't any single number, it was the sheer wall of twenty-five ways a family of four kids can split.
+
+2. The number. 6, counted from the panels under "One against one" — A vs B, A vs C, A vs D, B vs C, B vs D, C vs D, six of them across two rows. I also counted three under "Two against two," which was the section that interested me most.
+
+3. The question. Was this meant to be reassuring or alarming? Because on the page it lands as alarming — a parent of four looking at twenty-five labelled ways their children can oppose each other is going to feel found out, and the line "These are possibilities, not arguments that happened" is doing an enormous amount of work in very small type. I'd want to know who this is written for. If it's a maths readership, fine. If a parent will ever see it, that disclaimer needs to be much louder than the twenty-five pictures.
+
+4. The gap. The four-way category headings are the interesting clinical content — "one against three" and "two against two" are genuinely different family situations, and the chart shows me four of the first and three of the second but tells me nothing about them beyond the count. I looked for some acknowledgement that these categories are not interchangeable, that a child facing three siblings is in a different position from a two-two split, and it isn't there; all twenty-five are laid out as equivalent tiles. And there's no phone version of this one, which given it's the densest of the four is the one I'd most expect someone to try to look at on a screen.
+
+## Seat 4 — Visualization reader (canvas only)
+
+**Chart 1.** What it is about: before reading the title, two series against a count on the x-axis, one exploding upward and one lying flat on the floor. The title reads *"Of the 3,025 ways eight children can take sides, just 28 are one against one."* That matches, but the title is framed as a **ratio** claim about a single endpoint (n=8), whereas the drawing is a **trend** across n=1 to 8. The title is about the last pixel column; the chart is about all eight.
+
+Does the picture support the title? *"3,025 ways"* — visible, green endpoint just above the 3,000 tick, direct-labelled. *"just 28 are one against one"* — the **28 is on faith**; 28 on a 0–3,000 axis is under 1% of the plot height and the grey series is graphically indistinguishable from the zero line at every point. You can see *small*; you cannot see *28*. The unspoken comparison — 28 against 3,025 — is the actual claim, and no mark encodes the ratio. The in-plot annotation is **entirely on faith**: a linear y-axis cannot show a constant multiplier, and points n=1 through n=4 are pinned to the baseline, so the "sixfold at first" step is drawn as no movement at all. The annotation's leader line terminates precisely on the n=7 marker (confirmed at 3× zoom), which reads as "this annotation is about the 966 point." It is not — it is about the whole curve. Misdirected leader.
+
+Right kind of chart? Partly. A line chart is right for the growth story, wrong for the ratio story the title tells and wrong for the multiplicative story the annotation tells. Three claims, one form, and the form serves only one.
+
+Hard to read: the grey series is **completely occluded by the green from n=1 to roughly n=4** — at 2× zoom the first visible grey dots are at n=6, 7, 8. A reader would reasonably conclude one-against-one is zero until four children, which Chart 2 contradicts. Only three y ticks, no gridlines, so any unlabelled point is unreadable. On mobile the label "966" sits on top of the green line and the leader lands in the middle of it.
+
+Grayscale: survives — weight and lightness differ and both series are direct-labelled.
+
+The number: **3,025**, off the green terminal marker. **I cannot get 28 off the plot**; it comes only from the text string beside it.
+
+**Chart 2.** Same construction, four children. *"just 6 are one against one"* — **visible this time**, and that is the important difference from Chart 1. But the word *"just"* is doing work the picture refuses to support: 6 of 25 is about a quarter, and the chart draws it as about a quarter — a substantial, clearly-visible fraction. In Chart 1 "just" describes something under 1%; here the same word describes something you can see is not small. The picture is honest and the adjective is not.
+
+The annotation is supported: its leader lands on the n=3 green point labelled 6, and the grey point at n=3 is labelled 3. Both halves readable off the marks. This is the annotation Chart 1 should have had.
+
+Hard to read: from n=1 to n=2 the grey line is entirely hidden under the green, and the shared marker at n=2 is drawn in green only, so the grey series appears to begin at n=2. The "0" label at n=1 floats well above its own point — high enough that on the 0–25 scale it sits near where a value of 2 would be.
+
+The number: **6**, the grey terminal marker at x = 4 read against the y-axis, corroborated by the label. Unlike Chart 1, I can genuinely read this off the plot.
+
+**Chart 3.** Before the title: not a plot at all — an enumeration. Title: *"Three children can take sides in 6 ways, and 3 of those are one against one."* Exactly what is drawn.
+
+Does the picture support the title? Fully, and unusually so. Six panels, countable; the first band holds exactly three under "One against one." Nothing is on faith; the title is a count of drawn objects and the reader can audit it in two seconds. **This is the strongest title-to-picture match in the set.**
+
+Right kind of chart? Yes. The claim is "here is an exhaustive small set," and the form is an exhaustive small set.
+
+Hard to read: **there is no key** for the three chip states. The captions let a reader reverse-engineer it, but they have to do that reverse-engineering. The solid/ring distinction also implies the two sides differ in kind; they do not, and a reader may go looking for a meaning that isn't there. The section headings carry no counts; "One against one" would be more auditable as "One against one (3)."
+
+Grayscale: survives cleanly, and this looks deliberate — the three chip states differ by **fill pattern, not hue**.
+
+The number: **3**, by counting the panels. It comes off the graphic with no label required, which is what makes this chart work.
+
+**Chart 4.** Same idiom scaled up. The bands hold 6, 12, 4 and 3 panels — 25, which is the number in the title. As with Chart 3, nothing is taken on faith.
+
+Right kind of chart? Yes for exhaustiveness, and near the edge of what enumeration can carry — 25 panels is about the last size where "count them yourself" is a real offer. The set works as a zoom ladder: Chart 4 enumerates what Chart 2's endpoint counts, and Chart 3 enumerates Chart 2's n=3 point. That coherence is a genuine strength — the numbers reconcile across all four.
+
+Hard to read: **the band counts have to be counted, and the layout fights the count** — "One against one" wraps 6 panels as 4 + 2, leaving half a row blank. A reader verifying the headline "6" must notice the wrap. **No mobile version exists**; I am flagging the absence, not assuming a failure. Same missing key as Chart 3, and the burden is heavier here.
+
+Grayscale: survives, same mechanism.
+
+The number: **25**, by counting panels across the four bands. There is no axis and no data label; the number is the graphic.
+
+**Cross-cutting.** Charts 3 and 4 are the sound ones — their titles are counts of drawn objects and the reader can verify both halves by counting. Chart 1 is the weak one: its headline number is unreadable from the plot by construction, and its annotation makes a multiplicative claim on an additive axis. Chart 2 is sound as drawn but mislabelled in words. The grey series is occluded by the green in both line charts at the low end. Source lines are consistent and correctly spelled across all four, and all four carry the same caveat in bold — that caveat is doing real work and is well placed.
+
 5. Grayscale? Survives, same reasons as Chart 1. Ironically the grey series is already nearly invisible in colour, so grayscale loses nothing that wasn't lost.
 
 6. The number. I'd quote 3,025 possible configurations at eight children — green endpoint at x=8, sitting just above the 3,000 axis tick, direct label. The 28, by contrast, I could *not* get off the plot itself — only off its text label — and I'd say so if quoting it.

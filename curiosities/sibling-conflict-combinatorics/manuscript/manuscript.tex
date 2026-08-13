@@ -89,8 +89,21 @@ C(n) \;=\; \frac{3^{n} - 2\cdot 2^{n} + 1}{2}.
 \label{eq:main}
 \end{equation}
 Concretely, take three children named A, B, and C. The six configurations are the
-three one-on-one disputes (A against B with C uninvolved, and its two counterparts)
-and the three two-against-one splits ($\{A,B\}$ against C, and its two counterparts).
+three one-against-one disputes (A against B with C uninvolved, and its two
+counterparts) and the three two-against-one splits ($\{A,B\}$ against C, and its two
+counterparts). Figure~\ref{fig:n3} draws all six.
+
+Setting the six out this way makes visible a relationship between the two counts that
+is easy to miss, and that I missed until a reader pointed at it. Bossard's dyadic
+total is not a rival quantity to $C(n)$; it is a part of it. A pair of siblings is
+precisely a configuration in which both sides are single children, so the $n(n-1)/2$
+pairs \emph{are} the one-against-one configurations, and the remaining
+$C(n) - n(n-1)/2$ are the splits in which at least one side is a bloc. Six of the 25
+configurations at $n = 4$ are one against one, and 28 of the 3{,}025 at $n = 8$;
+Figure~\ref{fig:n4} shows the four-child case in full, sorted into its classes. What
+grows exponentially is therefore not a different thing from what Bossard counted. It
+is the space containing it, and the dyadic count is the thin slice of that space in
+which nobody sides with anybody.
 
 The expression in equation~\eqref{eq:main} is not ad hoc. It equals $S(n+1,3)$, a
 Stirling number of the second kind, and it appears in the On-Line Encyclopedia of
@@ -105,11 +118,12 @@ takes over.
 \begin{table}[htbp]
 \centering
 \caption{Possible conflict configurations, $C(n)$ of equation~\eqref{eq:main},
-against pairwise relationships, $n(n-1)/2$. All values are exact.}
+against the one-against-one configurations they contain, $n(n-1)/2$, which are
+Bossard's sibling pairs. All values are exact.}
 \label{tab:values}
 \begin{tabular}{@{}rrr@{}}
 \toprule
-Children $n$ & Conflict configurations $C(n)$ & Sibling pairs $n(n-1)/2$ \\
+Children $n$ & Conflict configurations $C(n)$ & One against one $n(n-1)/2$ \\
 \midrule
 1 & 0     & 0  \\
 2 & 1     & 1  \\
@@ -125,23 +139,46 @@ Children $n$ & Conflict configurations $C(n)$ & Sibling pairs $n(n-1)/2$ \\
 
 \begin{figure}[htbp]
 \centering
+\includegraphics[width=0.95\textwidth]{figure_n3_design.pdf}
+\caption{Every way three children can take sides: six configurations, of which the
+three one-against-one cases are exactly the three sibling pairs. A filled circle is a
+child on one side, a ringed circle a child on the other, and a grey circle a child
+staying out. The row break is the subset relation of
+equation~\eqref{eq:main} drawn rather than asserted.}
+\label{fig:n3}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
 \includegraphics[width=0.95\textwidth]{figureA_design.pdf}
 \caption{Conflict configurations $C(n) = (3^{n} - 2\cdot 2^{n} + 1)/2$, the ways $n$
 children can split into two opposing sides with the remaining children uninvolved,
-against pairwise relationships $n(n-1)/2$, for the family sizes most readers actually
-have ($n = 1$ to $4$). The two counts agree at one and two children and diverge from
-three onward: 6 configurations against 3 pairs at $n=3$, then 25 against 6 at $n=4$.
-The counts are a possibility space, exact by construction. They carry no claim about
-the frequency or severity of actual conflicts.}
+against the one-against-one configurations $n(n-1)/2$ they contain, for the family
+sizes most readers actually have ($n = 1$ to $4$). The two counts agree at one and two
+children and separate from three onward: 6 configurations against 3 one-against-one at
+$n=3$, then 25 against 6 at $n=4$. The counts are a possibility space, exact by
+construction. They carry no claim about the frequency or severity of actual
+conflicts.}
 \label{fig:typical}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figure_n4_design.pdf}
+\caption{All 25 configurations for four children, grouped by the shape of the split.
+The six one-against-one cases at the top are the sibling pairs of Bossard's count; the
+other nineteen involve at least one bloc. Four children are the smallest family
+admitting an evenly split two-against-two, a class three children cannot form at all.}
+\label{fig:n4}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figure1_design.pdf}
 \caption{The same two counts extended to $n = 8$. Successive values of $C(n)$
-approach a constant ratio of 3 (90, 301, 966, 3{,}025), so the growth is exponential,
-while the dyadic count below it is quadratic and reaches only 28. The values of
+\emph{approach} a constant ratio of 3 from above --- the multiplier is sixfold from
+$n=2$ to $n=3$, then 4.2, 3.6, 3.3, 3.2, 3.1 --- so the growth is exponential, while
+the one-against-one count below it is quadratic and reaches only 28. The values of
 Figure~\ref{fig:typical} sit in the flat left edge of this frame. As before, the
 counts are a possibility space, not observed conflicts.}
 \label{fig:growth}
@@ -152,7 +189,8 @@ six-fold. The jump from three to four multiplies the count by roughly four again
 Nothing linear behaves this way, and no quadratic does either; the growth rate tracks
 $3^{n}$. Bossard's dyadic count, by contrast, is quadratic. His framework registers
 the difference between two children and eight as 1 relationship versus 28. The
-conflict-configuration space registers it as 1 versus 3{,}025.
+conflict-configuration space registers it as 1 versus 3{,}025 --- and those 28 sit
+inside the 3{,}025 as its one-against-one cases.
 
 One note on related formalisms. A similar ally/opponent/neutral trichotomy underlies
 ``three-way conflict analysis'' in the tradition of Pawlak's conflict models, which
@@ -189,8 +227,9 @@ theoretical conflict space correlates with reported measures of sibling closenes
 conflict frequency, or estrangement in adulthood. Another open question is whether
 particular family structures matter: evenly split coalitions are available to
 four-child families, for example, while three-child families are limited to
-one-against-one and two-against-one forms, and those structural differences might
-correlate with different relational outcomes. The framework could also be extended to
+one-against-one and two-against-one forms (compare Figures~\ref{fig:n3}
+and~\ref{fig:n4}), and those structural differences might correlate with different
+relational outcomes. The framework could also be extended to
 model coalition stability over time, since sibling alliances are known to shift, and
 the count developed here is static; it says which configurations are possible, not
 which ones occur or persist. The coalition structure generation literature has built

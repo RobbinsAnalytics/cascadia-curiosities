@@ -256,9 +256,106 @@ PANEL v3: 4 seats, simulated · 2 charts (2 widths each) · findings 19 · defec
           fixed 3 · accepted 8 · escalated 4 · rejected 4 · multi-seat defects 5
           D = 7.50 defects/chart · N = 0.87 novel share · R = 0.21 rejected share
           Widths read: 324 px, 355 px (both figures)
+          Final: fixed 7 · accepted 8 · rejected 4  (four escalations resolved 2026-08-13)
 ```
 
-**`escalated` is not one of the skill's three dispositions.** It is recorded here rather than folded into `accepted` because four findings — 1, 3, 8, 15 — cannot be settled by the agent: each would change wording or a claim shared with a manuscript currently under query at The Mathematical Intelligencer, where changing the figures mid-query costs the "this is what they received" property. Calling them `accepted` would assert a judgement nobody made. **The panel is therefore open, not closed.**
+**`escalated` is not one of the skill's three dispositions.** It was recorded here rather than folded into `accepted` because four findings — 1, 3, 8, 15 — could not be settled by the agent: each would change wording or a claim shared with a manuscript then under query at The Mathematical Intelligencer, where changing the figures mid-query costs the "this is what they received" property. Calling them `accepted` would have asserted a judgement nobody made.
+
+### Escalations resolved — 2026-08-13
+
+Aaron's decision the same day removed the constraint: nothing had been formally submitted, so the manuscript could be revised and the revision is what any future submission uses. The queried PDF is preserved as `manuscript-as-queried-2026-08-12.pdf`; `manuscript.pdf` now tracks the revision. **All four escalations are now `fixed`:**
+
+| # | Was | Now |
+|---|---|---|
+| 1 | escalated — renaming the plotted quantity would change a term used throughout the manuscript | **fixed** — the term stays, since it is the point of the piece; the caveat moved out of grey subtitle ink onto its own line in body ink, on every figure at every target |
+| 3 | escalated — annotation wording shared with the manuscript figure | **fixed** — "roughly triples" became "sixfold at first, nearer three later" in the figures, and the manuscript caption now gives the whole ratio series rather than only its limit |
+| 8 | escalated — the subset framing is the paper's central contrast | **fixed** — titles now read "Of the 3,025 ways … just 28 are one against one", the end labels name whole and part, and manuscript Section 2 gains the observation outright: Bossard's dyadic count *is* the one-against-one slice of C(n), not a rival quantity to it. Two new figures enumerate the n=3 and n=4 cases so the subset relation is drawn rather than asserted |
+| 15 | escalated — "already double" shared with the manuscript's Figure A | **fixed** — now "the first to separate", which is what n = 3 is |
+
+Finding 8 is the one worth noting for the record: it improved the paper rather than only correcting a chart. A single seat raised it, no other seat came near it, and it was confirmed by enumeration rather than accepted on the seat's authority. **The panel is closed. The charts it read no longer exist**, having been superseded by the 2026-08-13 renders, which is why Panel v4 follows.
+
+---
+
+# PANEL v4 — four charts, corrected framing (figure1 · figureA · n=3 and n=4 enumerations) — 2026-08-13
+
+Trigger: three charts changed materially (titles, end labels, annotations, caveat, brand fonts) and two are new. Under this repo's standard the current renders were unread, so a fresh panel was required rather than carrying v3's clearance forward.
+
+```
+READING PANEL — sibling-conflict, corrected figures — 2026-08-13
+Decision served (Rule 0.1): unchanged from v3 — whether a general reader of the
+  public essay accepts the claim and reads it as a possibility space rather than a
+  prediction about their household, and whether a mathematically literate reader
+  arriving from the manuscript trusts the piece enough to read it.
+Charts panelled: 4   States: static renders
+Nature: simulated
+
+  Seat 1  Parent of four, non-technical        — simulated — unchanged from v3; the
+          least technical real reader and the person the artifact is about
+  Seat 2  Research mathematician,              — simulated — unchanged from v3; owns
+          enumerative combinatorics                          whether the counted object
+                                                             matches the stated formula
+  Seat 3  Family therapist, 20 years clinical  — simulated — unchanged from v3; the
+          harm dimension no analyst seat reaches
+  Seat 4  visualization reader                 — simulated — canvas only
+
+Roster identical to v3 (same Rule 0.1 decision, so the same room), fresh agent
+instances — no seat carried v3 context or saw v3's findings.
+
+Widths read: charts 1–3 at 324 px (mobile) and 800 px (printed page); chart 4 at
+800 px only, being manuscript-only.
+
+Blindness asserted: design system ☑ · review and build notes ☑ · source data ☑ ·
+                    intended finding from outside the artifact ☑ · other seats' output ☑
+Run: parallel ☑ (single spawn message)
+Author's pre-panel notes recorded: ☑  (pre-panel-notes.md, 2026-08-13, 12 items)
+```
+
+### Disposition table — v4
+
+Charts: **1** = figure1 (n≤8), **A** = figureA (n≤4), **3** = n=3 enumeration, **4** = n=4 enumeration.
+
+| # | Finding, in the reviewer's words | Seats | n | Chart | Defect? | Novel? | Disposition | Rule |
+|---|---|---|---|---|---|---|---|---|
+| 1 | *"There is no key for the three chip states"* / *"What are the two greens?"* / *"I reverse-engineered them from the captions"* / *"What are the three shades of the circles meant to be?"* | 1, 2, 3, 4 | **4** | 3, 4 | yes | no | **fixed** — a three-state key sits under the caveat on both enumerations. Every seat solved it from the captions and every seat reported having to, which is the definition of a step that should not be there | 5.1 |
+| 2 | *"the group sizes, which are the interesting part, are only recoverable by counting panels"* / *"I counted the one-against-two block as twelve … I did it on my fingers"* / *"Putting the count in each band heading would fix this"* | 1, 2, 4 | **3** | 3, 4 | yes | yes | **fixed** — headings now read "One against one — the sibling pairs (6 of 25)", "One against two (12)", and so on. The 4+2 wrap made the top band's count the hardest to verify, which is the one the title asserts | 3.2 |
+| 3 | *"The grey series is occluded by the green from n=1 to roughly n=4"* / *"I couldn't see the grey line"* / *"pinned flat on the floor"* | 1, 2, 4 | **3** | 1, A | yes | no | **fixed** — the one-against-one series is drawn on top and dashed, so it stays visible where the two coincide. v3 accepted this; three seats raising it again is the panel disagreeing with that disposition, and they are right | 3.6 |
+| 4 | *"what does that actually mean, and sixfold from what to what? I read it twice and still couldn't tell you which numbers it's talking about"* / *"entirely on faith … a linear y-axis cannot show a constant multiplier"* | 1, 4 | **2** | 1 | yes | yes | **fixed (wording)** — now "6x from two children to three, settling toward 3x by eight", which names the endpoints. The deeper objection, that a multiplicative claim cannot be seen on an additive axis, is **accepted**: a log axis cannot show the zeros at n=1 and costs the least technical seat more than it buys | 3.2 |
+| 5 | *"Three children are the first to separate … I took it as a claim about the children and thought it was wrong … That cost me a good twenty seconds"* | 1, 2 | **2** | A | yes | yes | **fixed** — "At three children the two counts part company", which is what was meant. Introduced by the v3 fix; caught one round later | 3.4 |
+| 6 | *"The annotation's leader line terminates precisely on the n=7 marker … It is not — it is about the whole curve"* / *"the thin curved leader read to me for a second as a second data series falling"* | 3, 4 | **2** | 1 | yes | yes | **fixed** — the leader is gone from Figure 1, whose note is about the whole series. Figure A keeps its leader, which Seat 4 confirmed lands correctly on the n=3 point it is about | 3.4 |
+| 7 | *"'just 6' describes something the chart correctly shows as roughly a quarter. The picture is honest and the adjective is not"* | 4 | 1 | A | yes | yes | **fixed** — "just" removed from Figure A's title. It was defensible at n=8, where 28 of 3,025 is under 1%, and false at n=4. One seat, and plainly right | 3.2 |
+| 8 | *"the grey one is just 28 with no rule attached … the chart makes the reader supply that"* | 2 | 1 | 1, A | yes | yes | **fixed** — the provenance strip now names both: S(n+1, 3) and n(n-1)/2 | 4.2 |
+| 9 | *"six configurations, and none of them is 'no conflict' … A parent will scan this and see six ways their three children can be in opposition and no way for them not to be. That's not what the maths says, but it's what the picture shows"* | 3 | 1 | 3, 4 | yes | yes | **fixed** — the caveat on both enumerations now ends "and the commonest case of all, nobody taking sides, is not among them". The omission is real and structural: C(n) requires both sides nonempty. The best finding in the panel | 3.2 |
+| 10 | *"The '0' label at n=1 floats well above its own point — high enough that on the 0–25 scale it sits near where a value of 2 would be"* | 4 | 1 | A | yes | yes | **fixed** — offsets reduced | 3.6 |
+| 11 | *"the source line says 'all 6 configurations … OEIS A000392' but drops the 'S(n+1,3)' that charts 1 and 2 carry"* | 2 | 1 | 3, 4 | yes | yes | **fixed** — restored, so all four figures cite identically | 4.2 |
+| 12 | *"28 is on faith … it exists only as a text label"* | 2, 3, 4 | **3** | 1 | yes | no | **accepted** — unchanged from v3 finding 2 and v2 finding 5. The vanishing *is* Figure 1's claim; the readable values live in Figure A, the enumerations and Table 1 | 3.2 |
+| 13 | *"the title is framed as a ratio claim about a single endpoint, whereas the drawing is a trend across n=1 to 8"* | 4 | 1 | 1 | yes | yes | **accepted** — true and worth recording. The trend is the finding and the ratio is the hook; splitting them would mean two figures where the piece already has four | 3.1 |
+| 14 | *"What happens to this on a phone? … 25 tiles four-across is the one that won't survive the reflow"* | 2, 3, 4 | **3** | 4 | no | — | **rejected** — chart 4 is manuscript-only by design, which is why the n=3 enumeration exists and carries the mobile slot. Recorded because three seats reached for it: if the n=4 figure is ever put on the page, this becomes a live defect | — |
+| 15 | *"Are these 3,025 possibilities being treated as if they were equally likely?"* | 3 | 1 | 1 | no | — | **rejected** — the chart makes no probability claim and the caveat denies one. A fair question of the piece, and the manuscript answers it in Section 3; not something a count can carry | — |
+| 16 | *"a child facing three siblings is in a different position from a two-two split … all twenty-five are laid out as equivalent tiles"* | 3 | 1 | 4 | no | — | **rejected** — the classes are now named and counted, which is as far as a combinatorial figure goes. The clinical difference between them is a claim the piece does not make and has no data for | — |
+| 17 | *"Is A+B vs C+D counted as the same as C+D vs A+B, and if so, is the same rule being applied to the other groups?"* / *"Are the two sides unlabelled — is 'A's lot versus B's lot' being counted once or twice?"* | 1, 2 | **2** | 1, 4 | yes | no | **accepted** — the unordered-sides convention is stated in manuscript Section 2, which derives the division by two explicitly. v3 finding 14 accepted this on the same grounds. Two seats reaching it independently is noted: the figures do not define their own object | 4.3 |
+
+### Panel summary — v4
+
+```
+PANEL v4: 4 seats, simulated · 4 charts · findings 17 · defects 13 · novel 9
+          fixed 11 · accepted 3 · rejected 3 · multi-seat defects 8
+          D = 3.25 defects/chart · N = 0.69 novel share · R = 0.18 rejected share
+          Widths read: 324 px and 800 px (charts 1–3), 800 px (chart 4)
+```
+
+**D fell from 7.50 to 3.25 and multi-seat defects rose from 5 to 8.** Both are what a working panel looks like on a second pass: the remaining defects are ones several readers hit rather than ones a single thorough seat enumerated, and eleven of thirteen were cheap to fix because they were presentation rather than claim. The two that were not fixed outright — the linear axis under a multiplicative annotation, and the unreadable 28 — are the same two the system has now declined three times, with reasons that have not changed.
+
+**Four of the nine novel defects were introduced by the v3 fixes** (4, 5, 7, and the leader in 6). That is the cost of changing wording under time pressure, and it is the argument for panelling again rather than shipping a corrected chart unread.
+
+**Visualization-seat share: Seat 4 raised 11 of 17 findings (65%)**, up from 53% at v3 and close to the Deal Desk's 68%. Across three modules the ratio is 68 / 53 / 65. The skill's guidance is to consider cutting the domain floor to two if the visualization seat keeps finding three-quarters of everything; it has not, and on this run the domain seats produced the panel's best finding (9, the missing "nobody takes sides" case) and its sharpest mathematical one (8, 17). **Recommend keeping the three-seat domain floor** and revisiting after one more module.
+
+**7.1 note.** All four seats' sentences carried their titles' claims. Every quoted number on charts 3 and 4 was obtained by *counting drawn objects*, which is the strongest form the location field can take — Seat 2: *"I counted six panels on the page and got six, which is worth more to me than the label."* On chart 1, three seats again reported they could not get 28 off the plot.
+
+### Verdict
+
+Checklist A/B has not been re-run against these renders. The panel is closed with no open escalations; the charts are the current committed renders and the manuscript builds against them.
+
+**VERDICT: not yet issued — panel complete, checklist outstanding.**
 
 **On D = 7.50, against v1's and v2's 4.0.** The rise is not a regression in the charts. Three causes, in the order they contribute: the reading width dropped to 324 px and surfaced collisions no 1050 px panel could see; pre-panel notes were recorded this time, so N is measured rather than absent and the disposition was stricter about what counts; and Seat 4 was unusually thorough. D is a count of candidate defects, not a quality score, and three of the fifteen were introduced by this build and fixed within it.
 

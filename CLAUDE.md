@@ -14,7 +14,7 @@ status note in the newest correspondence file is authoritative.
 
 | Piece | Status |
 |---|---|
-| `sibling-conflict-combinatorics` | **Query sent 2026-08-12** to The Mathematical Intelligencer (co-EiCs Parshall and Tabachnikov). Awaiting reply. |
+| `sibling-conflict-combinatorics` | **Query sent 2026-08-12** to The Mathematical Intelligencer (co-EiCs Parshall and Tabachnikov). Awaiting reply. **Manuscript revised 2026-08-13** and now differs from what was queried — the revision has not been sent, and sending it is not an agent action. |
 
 A piece under query has been sent to a human who is going to reply. **Do not
 re-send, do not post it anywhere, do not draft a response to editors.** When a
@@ -40,24 +40,35 @@ Figure A exists at all.
 
 ## Building the manuscript
 
-**Never rebuild `manuscript.pdf` in place.** The committed PDF is the exact
-artifact that went to the editors; a local rebuild produces a different file
-(different MiKTeX version, different byte count — 269,753 vs the committed
-235,388) and overwriting it destroys the ability to say "this is what they
-received." Build to a scratch directory instead:
+**The artifact that went out with the query is preserved by filename, not by a
+build ban.** It is `manuscript/manuscript-as-queried-2026-08-12.pdf` (235,388
+bytes) and it is never regenerated — nothing rebuilds that name. `manuscript.pdf`
+and `Robbins-Combinatorics-of-Sibling-Conflict.pdf` track the current source and
+may be rebuilt freely; they diverged from the queried version on 2026-08-13, when
+the subset finding was fixed.
+
+This replaces the earlier rule that forbade rebuilding in place. That rule existed
+to protect the "this is what they received" property, which a dated filename
+protects better, and it stopped being workable once the manuscript itself had to
+change. Aaron's decision, 2026-08-13: nothing was formally submitted, so the paper
+can be revised and the revision is what any future submission uses.
+
+Build with the working directory set to `manuscript/` — the figure paths are
+relative and resolve from the CWD, not from the output directory:
 
 ```
-pdflatex -interaction=nonstopmode -output-directory=<scratch> manuscript.tex
+pdflatex -interaction=nonstopmode "-output-directory=<scratch>" manuscript.tex
 ```
 
-run twice, **with the working directory set to `manuscript/`** — the figure
-paths are relative and resolve from the CWD, not from the output directory.
+run twice. **Quote the `-output-directory=` argument in PowerShell.** Unquoted,
+`$scratch` is not expanded and pdflatex creates a literal `$scratch` directory
+inside `manuscript/`.
 
 **MiKTeX is user-scope and not on `PATH` for every shell**:
 `%LOCALAPPDATA%\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe`. Installed
 2026-08-12 with `[MPM]AutoInstall=1` so missing packages fetch instead of
-blocking on a prompt. Verified 2026-08-12: two passes, 7 pages, converged, no
-errors.
+blocking on a prompt. Verified 2026-08-13: two passes, 9 pages, converged, no
+errors, all four figure PDFs resolved.
 
 **`manuscript/` and `figures/` are separate folders, so `\graphicspath` carries
 the figure resolution**, not the `\includegraphics` calls — those are bare
@@ -67,6 +78,18 @@ a portal wants one file per upload.
 
 **The `build_*.py` scripts write bare filenames into the current directory** —
 run them from inside `figures/` or they scatter output into the repo root.
+
+**Two build scripts, not five.** `build_lines.py` emits both line figures at all
+three targets (design + PDF, narrow, web); `build_enumeration.py` emits the worked
+examples (n=3 web and design, n=4 design). Shared font, glyph and off-canvas guards
+live in `cascadia_fig.py`. The four per-figure, per-size scripts they replaced
+hardcoded line breaks against DejaVu metrics at one canvas size each, and drifting
+apart is exactly how the web renders came to disagree with the manuscript figures.
+
+**The brand fonts are installed and asserted, so the DejaVu exception is closed.**
+Source Serif 4 (Adobe 4.005, per-user install) and Segoe UI both resolve; every
+build fails loudly rather than substituting, and also fails on a missing glyph.
+Any new figure should import those guards rather than reimplement them.
 
 ## Committing
 
