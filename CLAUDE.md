@@ -93,8 +93,11 @@ Any new figure should import those guards rather than reimplement them.
 
 ## Committing
 
-**Stage by name — never `git add -A` or `git add .`.** Both are denied in
-`.claude/settings.json`, and a `PreToolUse` hook refuses any commit carrying a
+**Stage by name — never `git add -A` or `git add .`.** Both are refused by the
+`PreToolUse` hook `.claude/hooks/no_blanket_add_or_force_push.py`, which also
+refuses force pushes. The `.claude/settings.json` deny block lists the same
+patterns but does not bind under `bypassPermissions`, which is why the hook
+exists. A second `PreToolUse` hook refuses any commit carrying a
 whitespace-only diff. Verify with
 `git diff --ignore-all-space --numstat -- <file>`; empty output means the diff
 is noise and the file must not be staged.
